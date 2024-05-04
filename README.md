@@ -4,6 +4,16 @@ I know there is a great benchmark provided by DuckDB, who took over the one that
 
 I plan on adding additional operations to this benchmark over time. Pull requests are welcome and so are issues and ideas!
 
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
+
+<br>
+
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults.PNG)
 
 

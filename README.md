@@ -4,7 +4,7 @@ I plan on adding additional operations to this benchmark over time. Pull request
 
 ## Replicate Benchmarks
 1. Fork the repo
-2. Modify the Path variable at the top of each file to reflect your file location
+2. Modify the Path variable at the top of each script to reflect your file location
 3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
 4. Run BenchmarkingDatatable.R
 5. Run BenchmarkingDuckDB.R

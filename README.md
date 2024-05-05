@@ -16,6 +16,13 @@ I plan on adding additional operations to this benchmark over time. Pull request
 
 ## Benmark Results
 
+In the plots below the x-axis "Experiments" shows four letters with numbers in front of them. This is what they mean:
+M: millions of rows
+N: number of numeric variables
+D: number of date variables
+G: number of additional group variables
+
+
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
 
 <br>

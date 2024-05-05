@@ -14,6 +14,8 @@ I plan on adding additional operations to this benchmark over time. Pull request
 
 <br>
 
+## Benmark Results
+
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
 
 <br>

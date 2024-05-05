@@ -1,7 +1,9 @@
-datatable <- data.table::fread("C:/Users/Bizon/Documents/GitHub/rappwd/BenchmarkResults.csv")
-polars <- data.table::fread("C:/Users/Bizon/Documents/GitHub/rappwd/BenchmarkResultsPolars.csv")
+Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
+
+datatable <- data.table::fread(paste0(Path, "BenchmarkResults.csv"))
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
-duckdb <- data.table::fread("C:/Users/Bizon/Documents/GitHub/rappwd/BenchmarkResultsDuckDB.csv")
+duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
 duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
 data.table::setnames(datatable, "TimeInSeconds", "data.table")
 data.table::setnames(polars, "TimeInSeconds", "Polars")
@@ -10,7 +12,7 @@ datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "data.table")]
 dt <- cbind(datatable, polars, duckdb)
 
 dt <- data.table::melt.data.table(data = dt, id.vars = c("Method", "Experiment"), measure.vars = c("data.table", "Polars", "DuckDB"), value.name = "Time In Seconds")
-data.table::fwrite(dt, file = "C:/Users/Bizon/Documents/GitHub/rappwd/BenchmarkResultsPlot.csv")
+data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
 
 # 1M
 AutoPlots::Plot.Bar(

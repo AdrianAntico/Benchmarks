@@ -3,7 +3,7 @@ This repo contains files for a data frames benchmark. Currently, the data frame 
 I plan on adding additional operations to this benchmark over time. Pull requests are welcome and so are issues and ideas!
 
 ## Replicate Benchmarks
-1. Fork the repo
+1. Fork the repo and clone it to your local machine
 2. Modify the Path variable at the top of each script to reflect your file location
 3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
 4. Run BenchmarkingDatatable.R

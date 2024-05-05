@@ -22,7 +22,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 * D: number of date variables
 * G: number of additional group variables
 
-
+### Sum Aggregation
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
 
 <br>

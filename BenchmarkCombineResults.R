@@ -12,7 +12,9 @@ datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "data.table")]
 dt <- cbind(datatable, polars, duckdb)
 
 dt <- data.table::melt.data.table(data = dt, id.vars = c("Method", "Experiment"), measure.vars = c("data.table", "Polars", "DuckDB"), value.name = "Time In Seconds")
+dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
+
 
 # 1M
 AutoPlots::Plot.Bar(
@@ -31,7 +33,7 @@ AutoPlots::Plot.Bar(
   Height = NULL,
   Width = NULL,
   Title = "1M Rows Benchmark",
-  ShowLabels = FALSE,
+  ShowLabels = TRUE,
   Title.YAxis = NULL,
   Title.XAxis = NULL,
   EchartsTheme = "dark",

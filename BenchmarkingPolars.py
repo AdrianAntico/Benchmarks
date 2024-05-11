@@ -3,7 +3,7 @@ import timeit
 import gc
 
 # Path to source data
-Path = f'{Path}'
+Path = "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Create results table
 BenchmarkResults = {
@@ -635,19 +635,26 @@ x = BenchmarkResults[0:44]
 y = x['TimeInSeconds'].sum()
 BenchmarkResults[45, 'TimeInSeconds'] = y
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-
-
-
+ 
+ 
+ 
 dt = pl.read_csv(f'{Path}BenchmarkResultsPlot.csv')
 
 from QuickEcharts import Charts
-dt = dt.sort('Experiment')
+# dt = dt.sort('Experiment')
 
-p1 = Charts.Bar(
-  dt = dt,
+dt = dt.with_columns(dt['Time In Seconds'].round(3))
+
+rows1M = [[x for x in range(0, 14)], [x for x in range(46, 60)], [x for x in range(92, 107)]]
+rows1M_list = [number for sublist in rows1M for number in sublist]
+dt1M = dt[rows1M_list]
+
+
+Charts.Bar(
+  dt = dt1M,
   PreAgg = True,
-  YVar = 'Experiment',
-  XVar = 'Time In Seconds',
+  YVar = 'Time In Seconds',
+  XVar = 'Experiment',
   GroupVar = 'variable',
   FacetCols = 1,
   FacetRows = 1,
@@ -656,9 +663,9 @@ p1 = Charts.Bar(
   AggMethod = 'sum',
   YVarTrans = 'Identity',
   RenderHTML = True,
-  ShowLabels = False,
+  ShowLabels = True,
   LabelPosition = 'top',
-  Theme = 'macarons',
+  Theme = 'dark',
   BackgroundColor = None,
   Width = None,
   Height = None,
@@ -666,7 +673,7 @@ p1 = Charts.Bar(
   Brush = True,
   DataZoom = True,
   Title = 'Benchmark Results',
-  TitleColor = 'black',
+  TitleColor = 'white',
   TitleFontSize = 20,
   SubTitle = None,
   SubTitleColor = '#fff',
@@ -682,7 +689,7 @@ p1 = Charts.Bar(
   LegendPosRight = '0%',
   LegendPosTop = '5%',
   LegendBorderSize = 1,
-  LegendTextColor = 'black',
+  LegendTextColor = 'white',
   VerticalLine = None,
   VerticalLineName = 'Line Name',
   HorizontalLine = None,

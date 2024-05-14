@@ -53,6 +53,22 @@ BenchmarkResults <- data.table::data.table(
     "100M 3N 1D 2G",
     "100M 3N 1D 3G",
     "100M 3N 1D 4G",
+
+    "1B 1N 1D 0G",
+    "1B 1N 1D 1G",
+    "1B 1N 1D 2G",
+    "1B 1N 1D 3G",
+    "1B 1N 1D 4G",
+    "1B 2N 1D 0G",
+    "1B 2N 1D 1G",
+    "1B 2N 1D 2G",
+    "1B 2N 1D 3G",
+    "1B 2N 1D 4G",
+    "1B 3N 1D 0G",
+    "1B 3N 1D 1G",
+    "1B 3N 1D 2G",
+    "1B 3N 1D 3G",
+    "1B 3N 1D 4G",
     "Total Runtime"),
 
   TimeInSeconds = c(rep(-1.1, 46))
@@ -620,8 +636,193 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 
 
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
+###################################################################################################
+
+dbDisconnect(con)
+data <- data.table::fread(paste0(Path, "FakeBevData1B.csv"))
+data.table::setnames(data, c("Beverage Flavor", "Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units"), c("BeverageFlavor", "DailyLiters", "DailyMargin", "DailyRevenue", "DailyUnits"))
+con = dbConnect(duckdb::duckdb())
+ncores = parallel::detectCores()
+invisible(dbExecute(con, sprintf("PRAGMA THREADS=%d", ncores)))
+table_name <- "bmdata1B"
+dbWriteTable(con, "bmdata1B", data, overwrite = TRUE)
+rm(data)
+
+# Aggregation 1B
+
+# Sum 1 Numeric Variable:
+
+## 1B 1N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
-BenchmarkResults[46, TimeInSeconds := BenchmarkResults[1:45, sum(TimeInSeconds)]]
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, sum(DailyLiters) AS v1 FROM bmdata1B GROUP BY Date")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[46, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 1N 1D 1G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, sum(DailyLiters) AS v1 FROM bmdata1B GROUP BY Date, Customer")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[47, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 1N 1D 2G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, sum(DailyLiters) AS v1 FROM bmdata1B GROUP BY Date, Customer, Brand")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[48, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 1N 1D 3G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, sum(DailyLiters) AS v1 FROM bmdata1B GROUP BY Date, Customer, Brand, Category")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[49, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 1N 1D 4G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, BeverageFlavor, sum(DailyLiters) AS v1 FROM bmdata1B GROUP BY Date, Customer, Brand, Category, BeverageFlavor")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[50, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 2N 1D 0G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2 FROM bmdata1B GROUP BY Date")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[51, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 2N 1D 1G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2 FROM bmdata1B GROUP BY Date, Customer")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[52, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 2N 1D 2G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2 FROM bmdata1B GROUP BY Date, Customer, Brand")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[53, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 2N 1D 3G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2 FROM bmdata1B GROUP BY Date, Customer, Brand, Category")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[54, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 2N 1D 4G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, BeverageFlavor, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2 FROM bmdata1B GROUP BY Date, Customer, Brand, Category, BeverageFlavor")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[55, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 3N 1D 0G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2, sum(DailyMargin) AS v3 FROM bmdata1B GROUP BY Date")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[56, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 3N 1D 1G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2, sum(DailyMargin) AS v3 FROM bmdata1B GROUP BY Date, Customer")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[57, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 3N 1D 2G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2, sum(DailyMargin) AS v3 FROM bmdata1B GROUP BY Date, Customer, Brand")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[58, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 3N 1D 3G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2, sum(DailyMargin) AS v3 FROM bmdata1B GROUP BY Date, Customer, Brand, Category")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[59, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+## 1B 3N 1D 4G
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+start <- Sys.time()
+dbExecute(con, "CREATE TABLE ans AS SELECT Date, Customer, Brand, Category, BeverageFlavor, sum(DailyLiters) AS v1, sum(DailyUnits) AS v2, sum(DailyMargin) AS v3 FROM bmdata1B GROUP BY Date, Customer, Brand, Category, BeverageFlavor")
+end <- Sys.time()
+dbExecute(con, "DROP TABLE ans")
+BenchmarkResults[60, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
+rm(list = c("BenchmarkResults","end","start"))
+
+
+BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+BenchmarkResults[61, TimeInSeconds := BenchmarkResults[1:60, sum(TimeInSeconds)]]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 
 

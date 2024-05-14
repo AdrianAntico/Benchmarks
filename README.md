@@ -1,10 +1,11 @@
 This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R's data.table, Python's Polars, and DuckDB. Others to come. 
 
-There are no special installation setup operations taking place for any of the packages. I want to see off the shelf, simple installation, benchmarks. 
+All of the packages utilize the installation that comes recommended. For example, DuckDB recommends to install in R as `install.packages("duckdb")` so I utilize that. There are no special installation setup operations taking place for any of the packages. I want to see off the shelf, simple installation, benchmarks. I believe that is what most people use when running these frameworks. Also, I'm using a Windows OS which I believe to be the most popular OS that people use. If anyone wants to run these on MAC or Linux, please share your results and I will display them.
 
-The data utilized replicates a real world example of a beverage company's data, for 1M, 10M, and 100M records. There is a Date variables, 4 group variables, and 4 numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
+The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a Date variable, 4 group variables, and 4 numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
 
-Currently, I've built out group by operations but I plan on adding additional operations over time. Pull requests are welcome and so are issues and ideas!
+## Current Operations
+* Group-By with Sum Aggregation
 
 ## Replicate Benchmarks
 1. Fork the repo and clone it to your local machine
@@ -19,8 +20,10 @@ Currently, I've built out group by operations but I plan on adding additional op
 <br>
 
 ## Machine Specs
-* Memory: 256GB
+* Windows OS
+* Memory: 234GB
 * CPU: 32 cores / 64 threads
+* AMD Ryzen CPU
 
 <br>
 
@@ -45,3 +48,6 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults.PNG)
 
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults.PNG)

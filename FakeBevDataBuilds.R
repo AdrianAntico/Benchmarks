@@ -19,6 +19,9 @@ randomizer <- function(dt, Num) {
   dt1
 }
 
+# Time script
+start <- Sys.time()
+
 # 1M Rows
 dt <- copy(data)
 dtlist <- list()
@@ -54,3 +57,19 @@ for(i in 1022:10743) {
 dt <- rbindlist(dtlist)
 data = rbindlist(list(data, dt))
 fwrite(data, paste0(Path, "FakeBevData100M.csv"))
+
+# 1B Rows
+dt <- copy(data)
+dtlist <- list()
+for(i in 10744:107967) {
+  dtlist[[i-10743]] <- randomizer(data, i)
+}
+
+# # 1B Rows Save Data
+dt <- rbindlist(dtlist)
+data = rbindlist(list(data, dt))
+fwrite(data, paste0(Path, "FakeBevData1B.csv"))
+
+# Timing script
+end <- Sys.time()
+difftime(end,start)

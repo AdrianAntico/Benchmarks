@@ -75,7 +75,7 @@ BenchmarkResults = {
     '1B 3N 1D 3G',
     '1B 3N 1D 4G',
     'Total Runtime'],
-  'TimeInSeconds': [0]*61
+  'TimeInSeconds': [-0.1]*61
 }
 BenchmarkResults = pd.DataFrame(BenchmarkResults)
 BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')

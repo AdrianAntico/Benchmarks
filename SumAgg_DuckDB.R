@@ -71,7 +71,7 @@ BenchmarkResults <- data.table::data.table(
     "1B 3N 1D 4G",
     "Total Runtime"),
 
-  TimeInSeconds = c(rep(0, 46))
+  TimeInSeconds = c(rep(-0.1, 46))
 )
 
 # Save results table

@@ -9,8 +9,12 @@ The datasets utilized replicates a real world example of a beverage company's da
 * Python Polars
 * R DuckDB
 
+<br>
+
 ## Current Operations
 * Group-By with Sum Aggregation
+
+<br>
 
 ## Replicate Benchmarks
 1. Fork the repo and clone it to your local machine

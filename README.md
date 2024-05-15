@@ -30,7 +30,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 6. Run SumAgg_Polars.py
 7. Run SumAgg_Pandas.py
 8. Run SumAgg_collapse.py
-9. Run BenchmarkCombineResults
+9. Run SumAgg_CombineResults
 10. Done!
 
 <br>

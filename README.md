@@ -31,7 +31,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 6. Run AggSum_Polars.py
 7. Run AggSum_Pandas.py
 8. Run AggSum_collapse.py
-9. Run AggSum_CombineResults
+9. Run CombineResults_AggSum
 10. Done!
 
 <br>

@@ -26,12 +26,12 @@ The datasets utilized replicates a real world example of a beverage company's da
 1. Fork the repo and clone it to your local machine
 2. Modify the Path variable at the top of each script to reflect your file location
 3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
-4. Run SumAgg_datatable.R
-5. Run SumAgg_DuckDB.R
-6. Run SumAgg_Polars.py
-7. Run SumAgg_Pandas.py
-8. Run SumAgg_collapse.py
-9. Run SumAgg_CombineResults
+4. Run AggSum_datatable.R
+5. Run AggSum_DuckDB.R
+6. Run AggSum_Polars.py
+7. Run AggSum_Pandas.py
+8. Run AggSum_collapse.py
+9. Run AggSum_CombineResults
 10. Done!
 
 <br>

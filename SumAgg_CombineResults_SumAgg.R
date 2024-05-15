@@ -22,12 +22,26 @@ data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
 datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "1_Datatable")]
 
 # Join data
-dt <- cbind(datatable, polars, duckdb, pandas, collapse)
+dt <- cbind(
+  datatable,
+  polars,
+  duckdb,
+  pandas,
+  collapse)
 
 # Prepare data for plotting
-dt <- data.table::melt.data.table(data = dt, id.vars = c("Method", "Experiment"), measure.vars = c("1_Datatable", "3_Polars", "4_DuckDB", "5_Pandas", "2_Collapse"), value.name = "Time In Seconds")
+dt <- data.table::melt.data.table(
+  data = dt,
+  id.vars = c("Method", "Experiment"),
+  measure.vars = c(
+    "1_Datatable",
+    "3_Polars",
+    "4_DuckDB",
+    "5_Pandas",
+    "2_Collapse"),
+  value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
-data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
+data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))
 dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -0.1, NA_real_, `Time In Seconds`)]
 data.table::setorderv(dt, cols = "variable", -1)
 

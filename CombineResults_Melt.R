@@ -2,8 +2,8 @@ Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Load Benchmark Files
 datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-# polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Melt.csv"))
-# polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Melt.csv"))
+polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
 # duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
 # duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
 # pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Melt.csv"))
@@ -13,7 +13,7 @@ collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
 data.table::setnames(datatable, "TimeInSeconds", "1_Datatable")
-# data.table::setnames(polars, "TimeInSeconds", "3_Polars")
+data.table::setnames(polars, "TimeInSeconds", "3_Polars")
 # data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
 # data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
@@ -24,7 +24,7 @@ datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "1_Datatable")
 # Join data
 dt <- cbind(
   datatable,
-  # polars,
+  polars,
   # duckdb,
   # pandas,
   collapse)
@@ -35,7 +35,7 @@ dt <- data.table::melt.data.table(
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
     "1_Datatable",
-    # "3_Polars",
+    "3_Polars",
     # "4_DuckDB",
     # "5_Pandas",
     "2_Collapse"),
@@ -47,7 +47,7 @@ data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61)],
+  dt = dt[c(1:15, 47:61, 93:107)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -85,7 +85,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76)],
+  dt = dt[c(16:30, 62:76, 108:122)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -123,7 +123,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91)],
+  dt = dt[c(31:45, 77:91, 123:137)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

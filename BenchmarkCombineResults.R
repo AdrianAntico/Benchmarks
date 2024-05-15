@@ -28,7 +28,7 @@ dt <- cbind(datatable, polars, duckdb, pandas, collapse)
 dt <- data.table::melt.data.table(data = dt, id.vars = c("Method", "Experiment"), measure.vars = c("1_Datatable", "3_Polars", "4_DuckDB", "5_Pandas", "2_Collapse"), value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
-dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -1.1, NA_real_, `Time In Seconds`)]
+dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -0.1, NA_real_, `Time In Seconds`)]
 data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case

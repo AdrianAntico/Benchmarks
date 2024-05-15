@@ -28,8 +28,10 @@ The datasets utilized replicates a real world example of a beverage company's da
 4. Run BenchmarkingDatatable.R
 5. Run BenchmarkingDuckDB.R
 6. Run BenchmarkingPolars.py
-7. Run BenchmarkCombineResults
-8. Done!
+7. Run BenchmarkingPandas.py
+8. Run BenchmarkingCollapse.py
+9. Run BenchmarkCombineResults
+10. Done!
 
 <br>
 

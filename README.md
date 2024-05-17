@@ -76,7 +76,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Sum Aggregation Results
+### Sum Aggregation
 <details><summary> Click here to see results </summary>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
@@ -97,7 +97,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Melt Data Results
+### Melt Data
 <details><summary> Click here to see results </summary>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResultsMelt.PNG)

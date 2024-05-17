@@ -112,9 +112,13 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
+##### With DuckDB: Note - DuckDB timed out after a few successful runs
+
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithDuckDB.PNG)
 
 <br>
+
+##### Without DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithoutDuckDB.PNG)
 

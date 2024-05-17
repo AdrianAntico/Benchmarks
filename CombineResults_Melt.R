@@ -4,29 +4,29 @@ Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
 polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Melt.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
-# duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-# duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
-# pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Melt.csv"))
-# pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
+duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
+duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
+pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Melt.csv"))
+pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
 collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "1_Datatable")
-data.table::setnames(polars, "TimeInSeconds", "3_Polars")
-# data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
-# data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
+data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
+data.table::setnames(polars, "TimeInSeconds", "1_Polars")
+data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
+data.table::setnames(pandas, "TimeInSeconds", "4_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "1_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
 
 # Join data
 dt <- cbind(
   datatable,
   polars,
-  # duckdb,
-  # pandas,
+  duckdb,
+  pandas,
   collapse)
 
 # Prepare data for plotting
@@ -34,10 +34,10 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "1_Datatable",
-    "3_Polars",
-    # "4_DuckDB",
-    # "5_Pandas",
+    "3_Datatable",
+    "1_Polars",
+    "5_DuckDB",
+    "4_Pandas",
     "2_Collapse"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
@@ -47,7 +47,7 @@ data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61, 93:107)],
+  dt = dt[c(1:15, 47:61, 93:107, 139:153, 185:199)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -69,14 +69,14 @@ AutoPlots::Plot.Bar(
   MouseScroll = FALSE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 22,
+  title.fontSize = 35,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 14,
+  yaxis.fontSize = 30,
   xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
@@ -85,7 +85,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76, 108:122)],
+  dt = dt[c(16:30, 62:76, 108:122, 154:168, 200:214)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -107,14 +107,14 @@ AutoPlots::Plot.Bar(
   MouseScroll = FALSE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 22,
+  title.fontSize = 35,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 14,
+  yaxis.fontSize = 35,
   xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
@@ -123,7 +123,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91, 123:137)],
+  dt = dt[c(31:45, 77:91, 123:137, 169:183, 215:229)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -145,14 +145,14 @@ AutoPlots::Plot.Bar(
   MouseScroll = FALSE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 22,
+  title.fontSize = 35,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 14,
+  yaxis.fontSize = 35,
   xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,

@@ -18,11 +18,14 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 ## Current Operations
 * Group-By with Sum Aggregation
-* Melt Data (coming soon!)
+* Melt Data
 
 <br>
 
 ## Replicate Benchmarks
+
+### Aggregation Sum
+<details><summary> Click here to see steps </summary>
 1. Fork the repo and clone it to your local machine
 2. Modify the Path variable at the top of each script to reflect your file location
 3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
@@ -33,6 +36,23 @@ The datasets utilized replicates a real world example of a beverage company's da
 8. Run AggSum_collapse.py
 9. Run CombineResults_AggSum
 10. Done!
+
+</details>
+
+### Melt Data
+<details><summary> Click here to see steps </summary>
+1. Fork the repo and clone it to your local machine
+2. Modify the Path variable at the top of each script to reflect your file location
+3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
+4. Run Melt_datatable.R
+5. Run Melt_DuckDB.R
+6. Run Melt_Polars.py
+7. Run Melt_Pandas.py
+8. Run Melt_collapse.py
+9. Run CombineResults_Melt
+10. Done!
+
+</details>
 
 <br>
 
@@ -54,7 +74,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Sum Aggregation
+### Sum Aggregation Results
+<details><summary> Click here to see results </summary>
+
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
 
 <br>
@@ -68,3 +90,27 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults.PNG)
+
+</details>
+
+<br>
+
+### Melt Data Results
+<details><summary> Click here to see results </summary>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResultsMelt.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResultsMelt.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsMelt_WithDuckDB.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsMelt_WithoutDuckDB.PNG)
+
+</details>
+

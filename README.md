@@ -26,31 +26,33 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 ### Aggregation Sum
 <details><summary> Click here to see steps </summary>
-1. Fork the repo and clone it to your local machine
-2. Modify the Path variable at the top of each script to reflect your file location
-3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
-4. Run AggSum_datatable.R
-5. Run AggSum_DuckDB.R
-6. Run AggSum_Polars.py
-7. Run AggSum_Pandas.py
-8. Run AggSum_collapse.py
-9. Run CombineResults_AggSum
-10. Done!
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run AggSum_datatable.R
+* Run AggSum_DuckDB.R
+* Run AggSum_Polars.py
+* Run AggSum_Pandas.py
+* Run AggSum_collapse.py
+* Run CombineResults_AggSum
+* Done!
 
 </details>
 
 ### Melt Data
 <details><summary> Click here to see steps </summary>
-1. Fork the repo and clone it to your local machine
-2. Modify the Path variable at the top of each script to reflect your file location
-3. Run FakeBevDataBuilds.R to generate the benchmarking datasets
-4. Run Melt_datatable.R
-5. Run Melt_DuckDB.R
-6. Run Melt_Polars.py
-7. Run Melt_Pandas.py
-8. Run Melt_collapse.py
-9. Run CombineResults_Melt
-10. Done!
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run Melt_datatable.R
+* Run Melt_DuckDB.R
+* Run Melt_Polars.py
+* Run Melt_Pandas.py
+* Run Melt_collapse.py
+* Run CombineResults_Melt
+* Done!
 
 </details>
 

@@ -104,19 +104,19 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResultsMelt.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Melt.PNG)
 
 <br>
 
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResultsMelt.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Melt.PNG)
 
 <br>
 
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsMelt_WithDuckDB.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithDuckDB.PNG)
 
 <br>
 
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsMelt_WithoutDuckDB.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithoutDuckDB.PNG)
 
 </details>
 

@@ -12,14 +12,14 @@ collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "1_Datatable")
+data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "3_Polars")
 data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
 data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
-data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
+data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "1_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "2_Datatable")]
 
 # Join data
 dt <- cbind(
@@ -34,11 +34,11 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "1_Datatable",
+    "2_Datatable",
     "3_Polars",
     "4_DuckDB",
     "5_Pandas",
-    "2_Collapse"),
+    "1_Collapse"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))

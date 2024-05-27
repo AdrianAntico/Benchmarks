@@ -87,10 +87,12 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResultsTop3.PNG)
 
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults.PNG)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsTop3.PNG)
 
 <br>
 

@@ -11,7 +11,7 @@ data <- data[, .SD, .SDcols = c("Date","Customer", "Brand", "Category", "Beverag
 randomizer <- function(dt, Num) {
   print(i)
   dt1 <- dt[Customer == "Location 1"]
-  dt1[, Customer := paste("Location ", Num)]
+  dt1[, Customer := paste0("Location ", Num)]
   dt1[, `Daily Liters` := (0.5 + runif(.N)) * `Daily Liters`]
   dt1[, `Daily Margin` := (0.5 + runif(.N)) * `Daily Margin`]
   dt1[, `Daily Units` := (0.5 + runif(.N)) * `Daily Units`]
@@ -25,8 +25,8 @@ start <- Sys.time()
 # 1M Rows
 dt <- copy(data)
 dtlist <- list()
-for(i in 1:49) {
-  dtlist[[i]] <- randomizer(data, i)
+for(i in 51:99) {
+  dtlist[[i-50]] <- randomizer(data, i)
 }
 
 # 1M Rows Save Data
@@ -37,8 +37,8 @@ fwrite(data, paste0(Path, "FakeBevData1M.csv"))
 # 10M Rows
 dt <- copy(data)
 dtlist <- list()
-for(i in 50:1021) {
-  dtlist[[i-49]] <- randomizer(data, i)
+for(i in 100:1071) {
+  dtlist[[i-99]] <- randomizer(data, i)
 }
 
 # 10M Rows Save Data
@@ -49,8 +49,8 @@ fwrite(data, paste0(Path, "FakeBevData10M.csv"))
 # 100M Rows
 dt <- copy(data)
 dtlist <- list()
-for(i in 1022:10743) {
-  dtlist[[i-1021]] <- randomizer(data, i)
+for(i in 1072:10793) {
+  dtlist[[i-1071]] <- randomizer(data, i)
 }
 
 # # 100M Rows Save Data
@@ -61,8 +61,8 @@ fwrite(data, paste0(Path, "FakeBevData100M.csv"))
 # 1B Rows
 dt <- copy(data)
 dtlist <- list()
-for(i in 10744:107967) {
-  dtlist[[i-10743]] <- randomizer(data, i)
+for(i in 10794:108017) {
+  dtlist[[i-10793]] <- randomizer(data, i)
 }
 
 # # 1B Rows Save Data

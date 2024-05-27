@@ -1,4 +1,4 @@
-# Path to data storage
+7# Path to data storage
 Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Create results table
@@ -75,8 +75,9 @@ data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
 rts <- c(rep(1.1, 30))
 for(i in 1:30) {
+  temp <- data[, list(`Daily Liters` = mean(`Daily Liters`), `Daily Units` = mean(`Daily Units`)), by = list(Date)]
   start <- Sys.time()
-  data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units"))
+  data.table::melt(data = temp, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }

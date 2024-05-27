@@ -19,6 +19,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 ## Current Operations
 * Group-By with Sum Aggregation
 * Melt Data
+* Cast Data (coming soon)
 
 <br>
 

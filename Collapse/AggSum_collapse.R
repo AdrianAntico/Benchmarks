@@ -86,7 +86,7 @@ library(collapse)
 
 ## 1M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
-set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
+set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE, sort = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
 start <- Sys.time()
 collap(data, `Daily Liters` ~ Date, sum)
@@ -248,7 +248,7 @@ gc()
 
 ## 10M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
-set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
+set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE, sort = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
 start <- Sys.time()
 collap(data, `Daily Liters` ~ Date, sum)
@@ -411,7 +411,7 @@ gc()
 
 ## 100M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
-set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
+set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE, sort = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
 start <- Sys.time()
 collap(data, `Daily Liters` ~ Date, sum)
@@ -573,7 +573,7 @@ gc()
 
 ## 1B 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData1B.csv"))
-set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
+set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE, sort = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
 start <- Sys.time()
 collap(data, `Daily Liters` ~ Date, sum)

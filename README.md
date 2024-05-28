@@ -57,8 +57,6 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 </details>
 
-<br>
-
 ### Cast Data
 <details><summary> Click here to see steps </summary>
 

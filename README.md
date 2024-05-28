@@ -19,7 +19,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 ## Current Operations
 * Group-By with Sum Aggregation
 * Melt Data
-* Cast Data (coming soon)
+* Cast Data
 
 <br>
 
@@ -53,6 +53,24 @@ The datasets utilized replicates a real world example of a beverage company's da
 * Run Melt_Pandas.py
 * Run Melt_collapse.py
 * Run CombineResults_Melt
+* Done!
+
+</details>
+
+<br>
+
+### Cast Data
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run Cast_datatable.R
+* Run Cast_DuckDB.R
+* Run Cast_Polars.py
+* Run Cast_Pandas.py
+* Run Cast_collapse.py
+* Run CombineResults_Cast
 * Done!
 
 </details>
@@ -131,3 +149,21 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 </details>
 
+<br>
+
+### Cast Data
+<details><summary> Click here to see results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Cast.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Cast.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Cast.PNG)
+
+</details>

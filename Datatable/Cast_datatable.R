@@ -26,7 +26,7 @@ BenchmarkResults <- data.table::data.table(
 
     "Total Runtime"),
 
-  TimeInSeconds = c(rep(-0.1, 46))
+  TimeInSeconds = c(rep(-0.1, 16))
 )
 
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
@@ -43,13 +43,13 @@ library(data.table)
 ## 1M 2N 1D 0G
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
+rts <- c(rep(1.1, 10))
 temp <- data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters","Daily Units","Daily Margin","Daily Revenue"))
 temp <- temp[, lapply(.SD, sum, na.rm = TRUE), .SDcols = c("value"), by = c("Date","Customer","Brand","Category","Beverage Flavor","variable")]
 temp <- temp[Customer %chin% paste0("Location ", 1:43)]
-for(i in 1:30) {
+for(i in 1:10) {
   start <- Sys.time()
-  data.table::dcast.data.table(data = temp, formula = Date ~ variable, value.var = "value", fun.aggregate = data.table::last, fill = 0)
+  data.table::dcast.data.table(data = temp, formula = Date ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -60,8 +60,9 @@ gc()
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -74,8 +75,9 @@ gc()
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -88,8 +90,9 @@ gc()
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -102,8 +105,9 @@ gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category + `Beverage Flavor` ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -128,9 +132,11 @@ gc()
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
 temp <- data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters","Daily Units","Daily Margin","Daily Revenue"))
 temp <- temp[, lapply(.SD, sum, na.rm = TRUE), .SDcols = c("value"), by = c("Date","Customer","Brand","Category","Beverage Flavor","variable")]
-temp <- temp[Customer %chin% c(paste0("Location ", 1:100), paste0("Location  ", 1:432))]
+temp <- temp[Customer %chin% paste0("Location ", 1:482)]
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -141,10 +147,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 1G
+## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -155,10 +162,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 2G
+## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -169,10 +177,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 3G
+## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -183,10 +192,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 4G
+## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category + `Beverage Flavor` ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -211,10 +221,11 @@ gc()
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
 temp <- data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters","Daily Units","Daily Margin","Daily Revenue"))
 temp <- temp[, lapply(.SD, sum, na.rm = TRUE), .SDcols = c("value"), by = c("Date","Customer","Brand","Category","Beverage Flavor","variable")]
-temp <- temp[Customer %chin% c(paste0("Location ", 1:100), paste0("Location  ", 1:4831))]
+temp <- temp[Customer %chin% paste0("Location ", 1:4881)]
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -225,10 +236,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 1G
+## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -239,10 +251,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 2G
+## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -253,10 +266,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 3G
+## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -267,10 +281,11 @@ data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
-## 1M 2N 1D 4G
+## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
+  print(i)
   start <- Sys.time()
   data.table::dcast.data.table(data = temp, formula = Date + Customer + Brand + Category + `Beverage Flavor` ~ variable, value.var = "value", fun.aggregate = sum, fill = 0)
   end <- Sys.time()
@@ -283,7 +298,7 @@ gc()
 
 
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Cast.csv"))
-BenchmarkResults[46, TimeInSeconds := BenchmarkResults[1:45, sum(TimeInSeconds)]]
+BenchmarkResults[16, TimeInSeconds := BenchmarkResults[1:15, sum(TimeInSeconds)]]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Cast.csv"))
 
 

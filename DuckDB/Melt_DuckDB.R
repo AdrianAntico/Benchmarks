@@ -87,7 +87,6 @@ rm(schema_info, ncores, query, table_name)
 # Melt Numeric Variable:
 
 ## 1M 2N 1D 0G
-data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
 rts <- c(rep(1.1, 30))
 for(i in 1:30) {

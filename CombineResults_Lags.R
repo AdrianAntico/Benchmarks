@@ -2,8 +2,8 @@ Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Load Benchmark Files
 datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
-# polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Lags.csv"))
-# polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Lags.csv"))
+polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
 # duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Lags.csv"))
 # duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
 # pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Lags.csv"))
@@ -12,19 +12,19 @@ collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Lags.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
-# data.table::setnames(polars, "TimeInSeconds", "1_Polars")
+data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
+data.table::setnames(polars, "TimeInSeconds", "3_Polars")
 # data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
 # data.table::setnames(pandas, "TimeInSeconds", "4_Pandas")
-data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
+data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "2_Datatable")]
 
 # Join data
 dt <- cbind(
   datatable,
-  # polars,
+  polars,
   # duckdb,
   # pandas,
   collapse)
@@ -34,11 +34,11 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "3_Datatable",
-    # "1_Polars",
+    "2_Datatable",
+    "3_Polars",
     # "5_DuckDB",
     # "4_Pandas",
-    "2_Collapse"),
+    "1_Collapse"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
@@ -47,7 +47,7 @@ data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61)], #, 93:107, 139:153, 185:199)],
+  dt = dt[c(1:15, 47:61, 93:107)], #, 139:153, 185:199)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -85,16 +85,16 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76)],# 108:122, 154:168, 200:214)],
+  dt = dt[c(16:30, 62:76, 108:122)], # 154:168, 200:214)],
   PreAgg = TRUE,
-  XVar = "variable",
+  XVar = "Experiment",
   YVar = "Time In Seconds",
-  GroupVar = "Experiment",
+  GroupVar = "variable",
   LabelValues = NULL,
   YVarTrans = "Identity",
   XVarTrans = "Identity",
-  FacetRows = 6,
-  FacetCols = 3,
+  FacetRows = 1,
+  FacetCols = 1,
   FacetLevels = NULL,
   AggMethod = "mean",
   Height = NULL,
@@ -123,7 +123,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91)],# 123:137, 169:183, 215:229)],
+  dt = dt[c(31:45, 77:91, 123:137)], # 169:183, 215:229)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

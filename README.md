@@ -20,7 +20,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 * Group-By with Sum Aggregation
 * Melt
 * Cast
-* Lagging (coming soon)
+* Lag (coming soon)
 
 <br>
 

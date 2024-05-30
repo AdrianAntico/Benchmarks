@@ -113,7 +113,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Sum Aggregation
 <details><summary> Click here to see results </summary>
 
-#### Total Run Time
+#### Total Run Time (excluding 1bn rows run times)
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
 
 <br>

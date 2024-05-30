@@ -36,10 +36,13 @@ Common attributes across datasets:
 
 1M Rows Data
 * Customer: 99 levels
+
 10M Rows Data
 * Customer: 1071 levels
+
 100M Rows Data
 * Customer: 10793 levels
+
 1Bn Rows Data
 * Customer: 108017 levels
 

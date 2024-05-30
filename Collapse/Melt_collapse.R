@@ -75,8 +75,8 @@ library(collapse)
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
 set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -89,8 +89,8 @@ gc()
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -103,8 +103,8 @@ gc()
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -117,8 +117,8 @@ gc()
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -131,8 +131,8 @@ gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -145,8 +145,8 @@ gc()
 
 ## 1M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -159,8 +159,8 @@ gc()
 
 ## 1M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -173,8 +173,8 @@ gc()
 
 ## 1M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -187,8 +187,8 @@ gc()
 
 ## 1M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -201,8 +201,8 @@ gc()
 
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -215,8 +215,8 @@ gc()
 
 ## 1M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -229,8 +229,8 @@ gc()
 
 ## 1M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -243,8 +243,8 @@ gc()
 
 ## 1M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -257,8 +257,8 @@ gc()
 
 ## 1M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -271,8 +271,8 @@ gc()
 
 ## 1M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -297,8 +297,8 @@ gc()
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
 set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -311,8 +311,8 @@ gc()
 
 ## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -325,8 +325,8 @@ gc()
 
 ## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -339,8 +339,8 @@ gc()
 
 ## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -353,8 +353,8 @@ gc()
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -367,8 +367,8 @@ gc()
 
 ## 10M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -381,8 +381,8 @@ gc()
 
 ## 10M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -395,8 +395,8 @@ gc()
 
 ## 10M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -409,8 +409,8 @@ gc()
 
 ## 10M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -423,8 +423,8 @@ gc()
 
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -437,8 +437,8 @@ gc()
 
 ## 10M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -451,8 +451,8 @@ gc()
 
 ## 10M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -465,8 +465,8 @@ gc()
 
 ## 10M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -479,8 +479,8 @@ gc()
 
 ## 10M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -493,8 +493,8 @@ gc()
 
 ## 10M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -519,8 +519,8 @@ gc()
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
 set_collapse(nthreads = data.table::getDTthreads(), mask = "all", na.rm = anyNA(num_vars(data)), stable.algo = FALSE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -533,8 +533,8 @@ gc()
 
 ## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -547,8 +547,8 @@ gc()
 
 ## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -561,8 +561,8 @@ gc()
 
 ## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -575,8 +575,8 @@ gc()
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -589,8 +589,8 @@ gc()
 
 ## 100M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -603,8 +603,8 @@ gc()
 
 ## 100M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -617,8 +617,8 @@ gc()
 
 ## 100M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -631,8 +631,8 @@ gc()
 
 ## 100M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -645,8 +645,8 @@ gc()
 
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -659,8 +659,8 @@ gc()
 
 ## 100M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = "Date", values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -673,8 +673,8 @@ gc()
 
 ## 100M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -687,8 +687,8 @@ gc()
 
 ## 100M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -701,8 +701,8 @@ gc()
 
 ## 100M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -715,8 +715,8 @@ gc()
 
 ## 100M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()

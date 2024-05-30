@@ -73,8 +73,8 @@ library(data.table)
 ## 1M 2N 1D 0G
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   temp <- data[, list(`Daily Liters` = mean(`Daily Liters`), `Daily Units` = mean(`Daily Units`)), by = list(Date)]
   start <- Sys.time()
   data.table::melt(data = temp, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units"))
@@ -88,8 +88,8 @@ gc()
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -102,8 +102,8 @@ gc()
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -116,8 +116,8 @@ gc()
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -130,8 +130,8 @@ gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -144,8 +144,8 @@ gc()
 
 ## 1M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -158,8 +158,8 @@ gc()
 
 ## 1M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -172,8 +172,8 @@ gc()
 
 ## 1M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -186,8 +186,8 @@ gc()
 
 ## 1M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -200,8 +200,8 @@ gc()
 
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -214,8 +214,8 @@ gc()
 
 ## 1M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -228,8 +228,8 @@ gc()
 
 ## 1M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -242,8 +242,8 @@ gc()
 
 ## 1M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -256,8 +256,8 @@ gc()
 
 ## 1M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -270,8 +270,8 @@ gc()
 
 ## 1M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -295,8 +295,8 @@ gc()
 ## 10M 2N 1D 0G
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -309,8 +309,8 @@ gc()
 
 ## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -323,8 +323,8 @@ gc()
 
 ## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -337,8 +337,8 @@ gc()
 
 ## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -351,8 +351,8 @@ gc()
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -365,8 +365,8 @@ gc()
 
 ## 10M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -379,8 +379,8 @@ gc()
 
 ## 10M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -393,8 +393,8 @@ gc()
 
 ## 10M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -407,8 +407,8 @@ gc()
 
 ## 10M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -421,8 +421,8 @@ gc()
 
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -435,8 +435,8 @@ gc()
 
 ## 10M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -449,8 +449,8 @@ gc()
 
 ## 10M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -463,8 +463,8 @@ gc()
 
 ## 10M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -477,8 +477,8 @@ gc()
 
 ## 10M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -491,8 +491,8 @@ gc()
 
 ## 10M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -516,8 +516,8 @@ gc()
 ## 100M 2N 1D 0G
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -530,8 +530,8 @@ gc()
 
 ## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -544,8 +544,8 @@ gc()
 
 ## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -558,8 +558,8 @@ gc()
 
 ## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -572,8 +572,8 @@ gc()
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units"))
   end <- Sys.time()
@@ -586,8 +586,8 @@ gc()
 
 ## 100M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -600,8 +600,8 @@ gc()
 
 ## 100M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -614,8 +614,8 @@ gc()
 
 ## 100M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -628,8 +628,8 @@ gc()
 
 ## 100M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -642,8 +642,8 @@ gc()
 
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin"))
   end <- Sys.time()
@@ -656,8 +656,8 @@ gc()
 
 ## 100M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = "Date", measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -670,8 +670,8 @@ gc()
 
 ## 100M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -684,8 +684,8 @@ gc()
 
 ## 100M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -698,8 +698,8 @@ gc()
 
 ## 100M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()
@@ -712,8 +712,8 @@ gc()
 
 ## 100M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   data.table::melt(data = data, id.vars = c("Date","Customer","Brand","Category","Beverage Flavor"), measure.vars = c("Daily Liters", "Daily Units", "Daily Margin","Daily Revenue"))
   end <- Sys.time()

@@ -75,8 +75,8 @@ gc.collect()
 data = pl.read_csv(f'{Path}FakeBevData1M.csv')
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -88,8 +88,8 @@ gc.collect()
 
 ## 1M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -101,8 +101,8 @@ gc.collect()
 
 ## 1M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -114,8 +114,8 @@ gc.collect()
 
 ## 1M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -127,8 +127,8 @@ gc.collect()
 
 ## 1M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -140,8 +140,8 @@ gc.collect()
 
 ## 1M 3N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -153,8 +153,8 @@ gc.collect()
 
 ## 1M 3N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -166,8 +166,8 @@ gc.collect()
 
 ## 1M 3N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -179,8 +179,8 @@ gc.collect()
 
 ## 1M 3N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -192,8 +192,8 @@ gc.collect()
 
 ## 1M 3N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -205,8 +205,8 @@ gc.collect()
 
 ## 1M 4N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -218,8 +218,8 @@ gc.collect()
 
 ## 1M 4N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -231,8 +231,8 @@ gc.collect()
 
 ## 1M 4N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -244,8 +244,8 @@ gc.collect()
 
 ## 1M 4N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -257,8 +257,8 @@ gc.collect()
 
 ## 1M 4N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -282,8 +282,8 @@ gc.collect()
 data = pl.read_csv(f'{Path}FakeBevData10M.csv')
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -295,8 +295,8 @@ gc.collect()
 
 ## 10M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -308,8 +308,8 @@ gc.collect()
 
 ## 10M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -321,8 +321,8 @@ gc.collect()
 
 ## 10M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -334,8 +334,8 @@ gc.collect()
 
 ## 10M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -347,8 +347,8 @@ gc.collect()
 
 ## 10M 3N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -360,8 +360,8 @@ gc.collect()
 
 ## 10M 3N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -373,8 +373,8 @@ gc.collect()
 
 ## 10M 3N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -386,8 +386,8 @@ gc.collect()
 
 ## 10M 3N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -399,8 +399,8 @@ gc.collect()
 
 ## 10M 3N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -412,8 +412,8 @@ gc.collect()
 
 ## 10M 4N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -425,8 +425,8 @@ gc.collect()
 
 ## 10M 4N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -438,8 +438,8 @@ gc.collect()
 
 ## 10M 4N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -451,8 +451,8 @@ gc.collect()
 
 ## 10M 4N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -464,8 +464,8 @@ gc.collect()
 
 ## 10M 4N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -490,8 +490,8 @@ gc.collect()
 data = pl.read_csv(f'{Path}FakeBevData100M.csv')
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -503,8 +503,8 @@ gc.collect()
 
 ## 100M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -516,8 +516,8 @@ gc.collect()
 
 ## 100M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -529,8 +529,8 @@ gc.collect()
 
 ## 100M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -542,8 +542,8 @@ gc.collect()
 
 ## 100M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units'])
   end = timeit.default_timer()
@@ -555,8 +555,8 @@ gc.collect()
 
 ## 100M 3N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -568,8 +568,8 @@ gc.collect()
 
 ## 100M 3N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -581,8 +581,8 @@ gc.collect()
 
 ## 100M 3N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -594,8 +594,8 @@ gc.collect()
 
 ## 100M 3N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -607,8 +607,8 @@ gc.collect()
 
 ## 100M 3N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin'])
   end = timeit.default_timer()
@@ -620,8 +620,8 @@ gc.collect()
 
 ## 100M 4N 1D 0G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = 'Date', value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -633,8 +633,8 @@ gc.collect()
 
 ## 100M 4N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -646,8 +646,8 @@ gc.collect()
 
 ## 100M 4N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -659,8 +659,8 @@ gc.collect()
 
 ## 100M 4N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()
@@ -672,8 +672,8 @@ gc.collect()
 
 ## 100M 4N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Melt.csv')
-rts = [1.1]*30
-for i in range(0,30):
+rts = [1.1]*10
+for i in range(0,10):
   start = timeit.default_timer()
   data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
   end = timeit.default_timer()

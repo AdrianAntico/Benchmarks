@@ -13,8 +13,8 @@ collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
 data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
-data.table::setnames(polars, "TimeInSeconds", "3_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
+data.table::setnames(polars, "TimeInSeconds", "4_Polars")
+data.table::setnames(duckdb, "TimeInSeconds", "3_DuckDB")
 data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 
@@ -35,8 +35,8 @@ dt <- data.table::melt.data.table(
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
     "2_Datatable",
-    "3_Polars",
-    "4_DuckDB",
+    "4_Polars",
+    "3_DuckDB",
     "5_Pandas",
     "1_Collapse"),
   value.name = "Time In Seconds")
@@ -44,6 +44,51 @@ dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))
 dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -0.1, NA_real_, `Time In Seconds`)]
 data.table::setorderv(dt, cols = "variable", -1)
+
+
+# Plot 1M Case
+temp <- data.table::copy(dt)
+temp <- temp[!c(46:60, 107:121, 168:183, 229:243, 290:304)]
+temp <- temp[Experiment != "Total Runtime"]
+temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
+temp <- temp[order(`Total Run Time (secs)`)]
+AutoPlots::Plot.Bar(
+  dt = temp,
+  PreAgg = TRUE,
+  XVar = "variable",
+  YVar = "Total Run Time (secs)",
+  GroupVar = "variable",
+  LabelValues = NULL,
+  YVarTrans = "Identity",
+  XVarTrans = "Identity",
+  FacetRows = 1,
+  FacetCols = 1,
+  FacetLevels = NULL,
+  AggMethod = "mean",
+  Height = NULL,
+  Width = NULL,
+  Title = "",
+  ShowLabels = TRUE,
+  Title.YAxis = NULL,
+  Title.XAxis = "",
+  EchartsTheme = "dark",
+  MouseScroll = TRUE,
+  TimeLine = TRUE,
+  TextColor = "white",
+  title.fontSize = 35,
+  title.fontWeight = "bold",
+  title.textShadowColor = "#63aeff",
+  title.textShadowBlur = 5,
+  title.textShadowOffsetY = 1,
+  title.textShadowOffsetX = -1,
+  xaxis.fontSize = 14,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 35,
+  yaxis.rotate = 0,
+  ContainLabel = TRUE,
+  Debug = FALSE
+)
+
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(

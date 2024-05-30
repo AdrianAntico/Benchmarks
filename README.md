@@ -113,6 +113,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Sum Aggregation
 <details><summary> Click here to see results </summary>
 
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
+
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG)
@@ -142,6 +145,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Melt
 <details><summary> Click here to see results </summary>
 
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
+
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Melt.PNG)
@@ -169,6 +175,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Cast
 <details><summary> Click here to see results </summary>
 
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
+
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Cast.PNG)
@@ -187,6 +196,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 ### Lags
 <details><summary> Click here to see results </summary>
+
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
 
 <br>
 

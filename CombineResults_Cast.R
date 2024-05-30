@@ -45,6 +45,50 @@ data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
 dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -0.1, NA_real_, `Time In Seconds`)]
 data.table::setorderv(dt, cols = "variable", -1)
 
+
+temp <- data.table::copy(dt)
+temp <- temp[Experiment != "Total Runtime"]
+temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
+temp <- temp[order(`Total Run Time (secs)`)]
+AutoPlots::Plot.Bar(
+  dt = temp,
+  PreAgg = TRUE,
+  XVar = "variable",
+  YVar = "Total Run Time (secs)",
+  GroupVar = "variable",
+  LabelValues = NULL,
+  YVarTrans = "Identity",
+  XVarTrans = "Identity",
+  FacetRows = 1,
+  FacetCols = 1,
+  FacetLevels = NULL,
+  AggMethod = "mean",
+  Height = NULL,
+  Width = NULL,
+  Title = "",
+  ShowLabels = TRUE,
+  Title.YAxis = NULL,
+  Title.XAxis = "",
+  EchartsTheme = "dark",
+  MouseScroll = TRUE,
+  TimeLine = TRUE,
+  TextColor = "white",
+  title.fontSize = 35,
+  title.fontWeight = "bold",
+  title.textShadowColor = "#63aeff",
+  title.textShadowBlur = 5,
+  title.textShadowOffsetY = 1,
+  title.textShadowOffsetX = -1,
+  xaxis.fontSize = 14,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 35,
+  yaxis.rotate = 0,
+  ContainLabel = TRUE,
+  Debug = FALSE
+)
+
+
+
 # Plot 1M Case
 AutoPlots::Plot.Bar(
   dt = dt[c(1:5, 17:21, 33:37, 49:53, 65:69)],

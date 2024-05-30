@@ -24,6 +24,23 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 <br>
 
+## Dataset Attributes
+Common attributes across datasets:
+* Brand: 13 levels
+* Category: 6 levels
+* Beverage Flavor: 21 levels
+* Four numeric variables
+* One Date Variable
+
+1. 1M Rows Data
+  * Customer: 99 levels
+2. 10M Rows Data
+  * Customer: 1071 levels
+3. 100M Rows Data
+  * Customer: 10793 levels
+4. 1Bn Rows Data
+  * Customer: 108017 levels
+
 ## Replicate Benchmarks
 
 ### Aggregation Sum

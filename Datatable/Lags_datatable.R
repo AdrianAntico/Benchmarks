@@ -73,6 +73,7 @@ library(data.table)
 ## 1M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
+setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 start <- Sys.time()
 data[, paste0("Lag Daily Liters ", 1L:5L) := shift(x = `Daily Liters`, n = 1L:5L)]
 end <- Sys.time()
@@ -248,6 +249,7 @@ gc()
 
 ## 10M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
+setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
 start <- Sys.time()
 data[, paste0("Lag Daily Liters ", 1L:5L) := shift(x = `Daily Liters`, n = 1L:5L)]
@@ -425,6 +427,7 @@ gc()
 
 ## 100M 1N 1D 0G
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
+setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
 start <- Sys.time()
 data[, paste0("Lag Daily Liters ", 1L:5L) := shift(x = `Daily Liters`, n = 1L:5L)]

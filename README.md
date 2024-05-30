@@ -20,7 +20,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 * Group-By with Sum Aggregation
 * Melt
 * Cast
-* Lag (coming soon)
+* Lags
 
 <br>
 
@@ -74,6 +74,22 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 </details>
 
+### Cast Data
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run Lags_datatable.R
+* Run Lags_DuckDB.R
+* Run Lags_Polars.py
+* Run Lags_Pandas.py
+* Run Lags_collapse.py
+* Run CombineResults_Lags
+* Done!
+
+</details>
+
 <br>
 
 ## Machine Specs
@@ -123,7 +139,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Melt Data
+### Melt
 <details><summary> Click here to see results </summary>
 
 <br>
@@ -150,7 +166,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Cast Data
+### Cast
 <details><summary> Click here to see results </summary>
 
 <br>
@@ -166,3 +182,32 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Cast.PNG)
 
 </details>
+
+<br>
+
+### Lags
+<details><summary> Click here to see results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Lags.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Lags.PNG)
+
+<br>
+
+##### With DuckDB: Note - DuckDB timed out after a few successful runs
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Lags_WithDuckDB.PNG)
+
+<br>
+
+##### Without DuckDB
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Lags_WithoutDuckDB.PNG)
+
+</details>
+
+<br>

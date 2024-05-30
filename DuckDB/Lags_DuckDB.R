@@ -54,21 +54,6 @@ BenchmarkResults <- data.table::data.table(
     "100M 3N 1D 3G 5L",
     "100M 3N 1D 4G 5L",
 
-    "1B 1N 1D 0G 5L",
-    "1B 1N 1D 1G 5L",
-    "1B 1N 1D 2G 5L",
-    "1B 1N 1D 3G 5L",
-    "1B 1N 1D 4G 5L",
-    "1B 2N 1D 0G 5L",
-    "1B 2N 1D 1G 5L",
-    "1B 2N 1D 2G 5L",
-    "1B 2N 1D 3G 5L",
-    "1B 2N 1D 4G 5L",
-    "1B 3N 1D 0G 5L",
-    "1B 3N 1D 1G 5L",
-    "1B 3N 1D 2G 5L",
-    "1B 3N 1D 3G 5L",
-    "1B 3N 1D 4G 5L",
     "Total Runtime"),
 
   TimeInSeconds = c(rep(-0.1, 46))

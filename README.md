@@ -26,11 +26,11 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 ## Dataset Attributes
 Common attributes across datasets:
-* Brand: 13 levels
-* Category: 6 levels
-* Beverage Flavor: 21 levels
-* Four numeric variables
-* One Date Variable
+> Brand: 13 levels
+> Category: 6 levels
+> Beverage Flavor: 21 levels
+> Four numeric variables
+> One Date Variable
 
 1. 1M Rows Data
   * Customer: 99 levels

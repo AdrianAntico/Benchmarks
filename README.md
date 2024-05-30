@@ -42,7 +42,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 </details>
 
-### Melt Data
+### Melt
 <details><summary> Click here to see steps </summary>
 
 * Fork the repo and clone it to your local machine
@@ -58,7 +58,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 </details>
 
-### Cast Data
+### Cast
 <details><summary> Click here to see steps </summary>
 
 * Fork the repo and clone it to your local machine
@@ -74,7 +74,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 </details>
 
-### Cast Data
+### Lags
 <details><summary> Click here to see steps </summary>
 
 * Fork the repo and clone it to your local machine

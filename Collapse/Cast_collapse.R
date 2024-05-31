@@ -52,9 +52,7 @@ temp <- temp[Customer %chin% paste0("Location ", 1:43)]
 for(i in 1:10) {# i = 1
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable, sum)
-  x = pivot(data = x, ids = "Date", values = c("value"), how = "wider")
-  roworderv(X = x, cols = "Date", decreasing = FALSE)
+  pivot(data = temp, ids = c("Date"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -70,9 +68,7 @@ temp <- pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters"
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer, sum)
-  x = pivot(data = x, ids = c("Date","Customer"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date", "Customer"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -88,9 +84,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date", "Customer","Brand"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -106,9 +100,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category"), values
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date", "Customer","Brand","Category"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -124,9 +116,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverag
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category + `Beverage Flavor`, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date", "Customer","Brand","Category","Beverage Flavor"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -156,9 +146,7 @@ temp <- temp[Customer %chin% paste0("Location ", 1:482)]
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable, sum)
-  x = pivot(data = x, ids = c("Date"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -174,9 +162,7 @@ temp <- pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters"
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer, sum)
-  x = pivot(data = x, ids = c("Date","Customer"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -192,9 +178,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -210,9 +194,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category"), values
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand","Category"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -228,9 +210,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverag
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category + `Beverage Flavor`, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand","Category","Beverage Flavor"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -261,9 +241,7 @@ temp <- temp[Customer %chin% paste0("Location ", 1:4881)]
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable, sum)
-  x = pivot(data = x, ids = c("Date"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -279,9 +257,7 @@ temp <- pivot(data = data, ids = c("Date","Customer"), values = c("Daily Liters"
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer, sum)
-  x = pivot(data = x, ids = c("Date","Customer"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -297,9 +273,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand"), values = c("Daily
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -315,9 +289,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category"), values
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand","Category"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
@@ -333,9 +305,7 @@ temp <- pivot(data = data, ids = c("Date","Customer","Brand","Category","Beverag
 for(i in 1:10) {
   print(i)
   start <- Sys.time()
-  x = collap(temp, value ~ Date + variable + Customer + Brand + Category + `Beverage Flavor`, sum)
-  x = pivot(data = x, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider")
-  roworderv(X = x, cols = c("Date","Customer","Brand","Category","Beverage Flavor"), decreasing = FALSE)
+  pivot(data = temp, ids = c("Date","Customer","Brand","Category","Beverage Flavor"), values = c("value"), how = "wider", FUN = "sum", sort = "ids")
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }

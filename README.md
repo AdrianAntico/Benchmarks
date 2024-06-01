@@ -9,10 +9,10 @@ The datasets utilized replicates a real world example of a beverage company's da
 
 ## Current Frameworks Tested
 * R data.table
-* Python Polars
-* R DuckDB
-* Python Pandas
 * R Collapse
+* R DuckDB
+* Python Polars
+* Python Pandas
 
 <br>
 
@@ -21,6 +21,7 @@ The datasets utilized replicates a real world example of a beverage company's da
 * Melt
 * Cast
 * Lags
+* Union
 
 <br>
 
@@ -110,6 +111,20 @@ Common attributes across datasets:
 * Run Lags_Pandas.py
 * Run Lags_collapse.py
 * Run CombineResults_Lags
+* Done!
+
+### Union
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run Union_datatable.R
+* Run Union_DuckDB.R
+* Run Union_Polars.py
+* Run Union_Pandas.py
+* Run Union_collapse.py
+* Run CombineResults_Union
 * Done!
 
 </details>
@@ -246,3 +261,36 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 </details>
 
 <br>
+
+
+### Union
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
+
+<details><summary> Click here to see detailed results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Union.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Union.PNG)
+
+<br>
+
+##### With DuckDB: Note - DuckDB timed out after a few successful runs
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithDuckDB.PNG)
+
+<br>
+
+##### Without DuckDB
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithoutDuckDB.PNG)
+
+</details>
+
+<br>
+
+

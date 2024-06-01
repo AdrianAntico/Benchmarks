@@ -1,25 +1,25 @@
 Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Load Benchmark Files
-datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
-polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Lags.csv"))
+datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Union.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
-duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Lags.csv"))
-#duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
-pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Lags.csv"))
+duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Union.csv"))
+duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
+pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Union.csv"))
 pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
-collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Lags.csv"))
+collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Union.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
-data.table::setnames(polars, "TimeInSeconds", "4_Polars")
-#data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
-data.table::setnames(pandas, "TimeInSeconds", "3_Pandas")
-data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
+data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
+data.table::setnames(polars, "TimeInSeconds", "1_Polars")
+data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
+data.table::setnames(pandas, "TimeInSeconds", "2_Pandas")
+data.table::setnames(collapse, "TimeInSeconds", "4_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "2_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
 
 # Join data
 dt <- cbind(
@@ -34,11 +34,12 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "2_Datatable",
-    "4_Polars",
+    "3_Datatable",
+    "1_Polars",
     "5_DuckDB",
-    "3_Pandas",
-    "1_Collapse"),
+    "2_Pandas",
+    "4_Collapse"
+    ),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
@@ -86,7 +87,6 @@ AutoPlots::Plot.Bar(
   ContainLabel = TRUE,
   Debug = FALSE
 )
-
 
 
 # Plot 1M Case

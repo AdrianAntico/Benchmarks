@@ -113,6 +113,8 @@ Common attributes across datasets:
 * Run CombineResults_Lags
 * Done!
 
+</details>
+
 ### Union
 <details><summary> Click here to see steps </summary>
 

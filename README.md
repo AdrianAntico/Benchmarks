@@ -125,7 +125,6 @@ Common attributes across datasets:
 * Run Union_DuckDB.R
 * Run Union_Polars.py
 * Run Union_Pandas.py
-* Run Union_collapse.py
 * Run CombineResults_Union
 * Done!
 

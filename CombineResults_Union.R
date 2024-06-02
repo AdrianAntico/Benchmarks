@@ -167,7 +167,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91, 123:137, 169:183, 215:229)],
+  dt = dt[c(31:45, 77:91, 123:137, 169:183)],# 215:229)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

@@ -8,15 +8,15 @@ duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Union.csv"))
 duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
 pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Union.csv"))
 pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
-collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Union.csv"))
-collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
+#collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Union.csv"))
+#collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
 data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "1_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
+data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
 data.table::setnames(pandas, "TimeInSeconds", "2_Pandas")
-data.table::setnames(collapse, "TimeInSeconds", "4_Collapse")
+#data.table::setnames(collapse, "TimeInSeconds", "4_Collapse")
 
 # Subset columns
 datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
@@ -26,8 +26,8 @@ dt <- cbind(
   datatable,
   polars,
   duckdb,
-  pandas,
-  collapse)
+  pandas)#,
+  #collapse)
 
 # Prepare data for plotting
 dt <- data.table::melt.data.table(
@@ -36,9 +36,9 @@ dt <- data.table::melt.data.table(
   measure.vars = c(
     "3_Datatable",
     "1_Polars",
-    "5_DuckDB",
-    "2_Pandas",
-    "4_Collapse"
+    "4_DuckDB",
+    "2_Pandas"#,
+    # "4_Collapse"
     ),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
@@ -91,7 +91,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61, 93:107, 139:153, 185:199)],
+  dt = dt[c(1:15, 47:61, 93:107, 139:153)],#  185:199)
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -129,7 +129,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76, 108:122, 154:168, 200:214)],
+  dt = dt[c(16:30, 62:76, 108:122, 154:168)],# 200:214)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

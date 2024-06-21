@@ -204,8 +204,9 @@ AutoPlots::Plot.Bar(
 )
 
 # Plot 1B Case
+dt = dt[variable == "5_Pandas" & Experiment %like% "1B", `Time In Seconds` := NA]
 AutoPlots::Plot.Bar(
-  dt = dt[c(46:60, 107:121, 168:183, 229:243, 290:304)],
+  dt = dt[c(46:60, 107:121, 168:182, 229:243, 290:304)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

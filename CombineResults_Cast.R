@@ -12,14 +12,14 @@ collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Cast.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "4_Datatable")
+data.table::setnames(datatable, "TimeInSeconds", "5_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "2_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
-data.table::setnames(pandas, "TimeInSeconds", "3_Pandas")
+data.table::setnames(duckdb, "TimeInSeconds", "3_DuckDB")
+data.table::setnames(pandas, "TimeInSeconds", "4_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "4_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "5_Datatable")]
 
 # Join data
 dt <- cbind(
@@ -34,10 +34,10 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "4_Datatable",
+    "5_Datatable",
     "2_Polars",
-    "5_DuckDB",
-    "3_Pandas",
+    "3_DuckDB",
+    "4_Pandas",
     "1_Collapse"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]

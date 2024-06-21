@@ -93,11 +93,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -114,11 +114,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -135,11 +135,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -156,11 +156,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -177,11 +177,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -198,16 +198,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -224,16 +224,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -250,16 +250,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -276,16 +276,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -302,16 +302,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -328,21 +328,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER() AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER() AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER() AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER() AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER() AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -359,21 +359,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -390,21 +390,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -421,21 +421,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -452,21 +452,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata1M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -504,11 +504,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -525,11 +525,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -546,11 +546,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -567,11 +567,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -588,11 +588,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -609,16 +609,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -635,16 +635,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -661,16 +661,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -687,16 +687,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -713,16 +713,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -739,21 +739,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER() AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER() AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER() AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER() AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER() AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -770,21 +770,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -801,21 +801,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -832,21 +832,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -863,21 +863,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata10M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -915,11 +915,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -936,11 +936,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -957,11 +957,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -978,11 +978,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -999,11 +999,11 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1020,16 +1020,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1046,16 +1046,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1072,16 +1072,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1098,16 +1098,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1124,16 +1124,16 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1150,21 +1150,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER() AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER() AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER() AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER() AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER() AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER() AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER() AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER() AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER() AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER() AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER() AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER() AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER() AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER() AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER() AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1181,21 +1181,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1212,21 +1212,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1243,21 +1243,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1274,21 +1274,21 @@ dbExecute(
   con,
   "CREATE TABLE ans AS
   SELECT Date, Customer, Brand, Category, BeverageFlavor, DailyLiters, DailyUnits, DailyMargin, DailyRevenue,
-  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters1,
-  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters2,
-  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters3,
-  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters4,
-  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyLiters5,
-  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits1,
-  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits2,
-  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits3,
-  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits4,
-  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyUnits5,
-  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin1,
-  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin2,
-  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin3,
-  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin4,
-  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor) AS LagDailyMargin5
+  LAG(DailyLiters, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters1,
+  LAG(DailyLiters, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters2,
+  LAG(DailyLiters, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters3,
+  LAG(DailyLiters, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters4,
+  LAG(DailyLiters, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyLiters5,
+  LAG(DailyUnits, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits1,
+  LAG(DailyUnits, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits2,
+  LAG(DailyUnits, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits3,
+  LAG(DailyUnits, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits4,
+  LAG(DailyUnits, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyUnits5,
+  LAG(DailyMargin, 1) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin1,
+  LAG(DailyMargin, 2) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin2,
+  LAG(DailyMargin, 3) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin3,
+  LAG(DailyMargin, 4) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin4,
+  LAG(DailyMargin, 5) OVER(PARTITION BY Customer,Brand,Category,BeverageFlavor ORDER BY Date ASC) AS LagDailyMargin5
   FROM bmdata100M")
 print(c(nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt, nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
 end <- Sys.time()
@@ -1301,6 +1301,3 @@ rm(list = c("BenchmarkResults","end","start"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Lags.csv"))
 BenchmarkResults[46, TimeInSeconds := BenchmarkResults[1:45, sum(TimeInSeconds)]]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Lags.csv"))
-
-
-

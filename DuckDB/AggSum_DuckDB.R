@@ -71,7 +71,7 @@ BenchmarkResults <- data.table::data.table(
     "1B 3N 1D 4G",
     "Total Runtime"),
 
-  TimeInSeconds = c(rep(-0.1, 46))
+  TimeInSeconds = c(rep(-0.1, 61))
 )
 
 # Save results table
@@ -85,8 +85,11 @@ data <- data.table::fread(paste0(Path, "FakeBevData1M.csv"))
 data.table::setnames(data, c("Beverage Flavor", "Daily Liters", "Daily Margin", "Daily Revenue", "Daily Units"), c("BeverageFlavor", "DailyLiters", "DailyMargin", "DailyRevenue", "DailyUnits"))
 con = dbConnect(duckdb::duckdb())
 ncores = parallel::detectCores()
+MaxMem = '243GB'
 invisible(dbExecute(con, sprintf("PRAGMA THREADS=%d", ncores)))
 invisible(dbExecute(con, sprintf("SET THREADS=%d", ncores)))
+invisible(dbExecute(con, sprintf("SET memory_limit=%s", paste0("'", MaxMem, "'"))))
+duckdb:::sql("SELECT current_setting('threads')")
 table_name <- "bmdata1M"
 dbWriteTable(con, "bmdata1M", data, overwrite = TRUE)
 rm(data)
@@ -111,7 +114,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[1, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -123,7 +126,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[2, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -135,7 +138,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[3, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -147,7 +150,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[4, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -159,7 +162,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[5, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 2N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -171,7 +174,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[6, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -183,7 +186,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[7, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -195,7 +198,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[8, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -207,7 +210,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[9, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -219,7 +222,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[10, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -231,7 +234,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[11, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -243,7 +246,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[12, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -255,7 +258,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[13, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -267,7 +270,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[14, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -279,7 +282,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[15, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ###################################################################################################
 ###################################################################################################
@@ -312,7 +315,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[16, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -324,7 +327,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[17, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -336,7 +339,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[18, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -348,7 +351,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[19, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -360,7 +363,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[20, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 2N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -372,7 +375,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[21, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -384,7 +387,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[22, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -396,7 +399,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[23, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -408,7 +411,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[24, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -420,7 +423,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[25, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -432,7 +435,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[26, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -444,7 +447,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[27, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -456,7 +459,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[28, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -468,7 +471,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[29, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -480,7 +483,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[30, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 
 ###################################################################################################
@@ -496,6 +499,7 @@ con = dbConnect(duckdb::duckdb())
 ncores = parallel::detectCores()
 invisible(dbExecute(con, sprintf("PRAGMA THREADS=%d", ncores)))
 invisible(dbExecute(con, sprintf("SET THREADS=%d", ncores)))
+duckdb:::sql("SELECT current_setting('threads')")
 table_name <- "bmdata100M"
 dbWriteTable(con, "bmdata100M", data, overwrite = TRUE)
 rm(data)
@@ -514,7 +518,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[31, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -526,7 +530,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[32, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -538,7 +542,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[33, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -550,7 +554,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[34, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -562,7 +566,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[35, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 2N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -574,7 +578,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[36, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -586,7 +590,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[37, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -598,7 +602,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[38, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -610,7 +614,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[39, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -622,7 +626,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[40, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -634,7 +638,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[41, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -646,7 +650,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[42, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -658,7 +662,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[43, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -670,7 +674,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[44, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
@@ -682,7 +686,7 @@ dbExecute(con, "DROP TABLE ans")
 BenchmarkResults[45, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB.csv"))
 rm(list = c("BenchmarkResults","end","start"))
-
+duckdb:::sql("SELECT current_setting('threads')")
 
 ###################################################################################################
 ###################################################################################################
@@ -697,6 +701,7 @@ con = dbConnect(duckdb::duckdb())
 ncores = parallel::detectCores()
 invisible(dbExecute(con, sprintf("PRAGMA THREADS=%d", ncores)))
 invisible(dbExecute(con, sprintf("SET THREADS=%d", ncores)))
+duckdb:::sql("SELECT current_setting('threads')")
 table_name <- "bmdata1B"
 dbWriteTable(con, "bmdata1B", data, overwrite = TRUE)
 rm(data)

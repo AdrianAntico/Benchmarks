@@ -5,7 +5,7 @@ datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
 polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Lags.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
 duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Lags.csv"))
-#duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
+duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
 pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Lags.csv"))
 pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
 collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Lags.csv"))
@@ -14,7 +14,7 @@ collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 # Modify Column Names for Joining
 data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "4_Polars")
-#data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
+data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
 data.table::setnames(pandas, "TimeInSeconds", "3_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 

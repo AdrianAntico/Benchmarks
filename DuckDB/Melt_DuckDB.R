@@ -11,6 +11,7 @@ BenchmarkResults <- data.table::data.table(
     "1M 2N 1D 2G",
     "1M 2N 1D 3G",
     "1M 2N 1D 4G",
+
     "1M 3N 1D 0G",
     "1M 3N 1D 1G",
     "1M 3N 1D 2G",
@@ -88,8 +89,8 @@ rm(schema_info, ncores, query, table_name)
 
 ## 1M 2N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata1M
@@ -109,8 +110,8 @@ gc()
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata1M
@@ -130,8 +131,8 @@ gc()
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata1M
@@ -151,8 +152,8 @@ gc()
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata1M
@@ -172,8 +173,8 @@ gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata1M
@@ -193,8 +194,8 @@ gc()
 
 ## 1M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata1M
@@ -216,8 +217,8 @@ gc()
 
 ## 1M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata1M
@@ -239,8 +240,8 @@ gc()
 
 ## 1M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata1M
@@ -262,8 +263,8 @@ gc()
 
 ## 1M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata1M
@@ -285,8 +286,8 @@ gc()
 
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata1M
@@ -308,8 +309,8 @@ gc()
 
 ## 1M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata1M
@@ -334,8 +335,8 @@ gc()
 
 ## 1M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata1M
@@ -359,8 +360,8 @@ gc()
 
 ## 1M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata1M
@@ -384,8 +385,8 @@ gc()
 
 ## 1M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata1M
@@ -409,8 +410,8 @@ gc()
 
 ## 1M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata1M
@@ -453,8 +454,8 @@ table_name <- "bmdata10M"
 dbWriteTable(con, "bmdata10M", data, overwrite = TRUE)
 rm(data)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata10M
@@ -474,8 +475,8 @@ gc()
 
 ## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata10M
@@ -495,8 +496,8 @@ gc()
 
 ## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata10M
@@ -516,8 +517,8 @@ gc()
 
 ## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata10M
@@ -537,8 +538,8 @@ gc()
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata10M
@@ -558,8 +559,8 @@ gc()
 
 ## 10M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata10M
@@ -581,8 +582,8 @@ gc()
 
 ## 10M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata10M
@@ -604,8 +605,8 @@ gc()
 
 ## 10M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata10M
@@ -627,8 +628,8 @@ gc()
 
 ## 10M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata10M
@@ -650,8 +651,8 @@ gc()
 
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata10M
@@ -673,8 +674,8 @@ gc()
 
 ## 10M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata10M
@@ -699,8 +700,8 @@ gc()
 
 ## 10M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata10M
@@ -724,8 +725,8 @@ gc()
 
 ## 10M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata10M
@@ -749,8 +750,8 @@ gc()
 
 ## 10M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata10M
@@ -774,8 +775,8 @@ gc()
 
 ## 10M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata10M
@@ -818,8 +819,8 @@ table_name <- "bmdata100M"
 dbWriteTable(con, "bmdata100M", data, overwrite = TRUE)
 rm(data)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata100M
@@ -839,8 +840,8 @@ gc()
 
 ## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata100M
@@ -860,8 +861,8 @@ gc()
 
 ## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata100M
@@ -881,8 +882,8 @@ gc()
 
 ## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata100M
@@ -902,8 +903,8 @@ gc()
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata100M
@@ -923,8 +924,8 @@ gc()
 
 ## 100M 3N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata100M
@@ -946,8 +947,8 @@ gc()
 
 ## 100M 3N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata100M
@@ -969,8 +970,8 @@ gc()
 
 ## 100M 3N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata100M
@@ -992,8 +993,8 @@ gc()
 
 ## 100M 3N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata100M
@@ -1015,8 +1016,8 @@ gc()
 
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata100M
@@ -1038,8 +1039,8 @@ gc()
 
 ## 100M 4N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, DailyLiters as variable from bmdata100M
@@ -1064,8 +1065,8 @@ gc()
 
 ## 100M 4N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, DailyLiters as variable from bmdata100M
@@ -1089,8 +1090,8 @@ gc()
 
 ## 100M 4N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, DailyLiters as variable from bmdata100M
@@ -1114,8 +1115,8 @@ gc()
 
 ## 100M 4N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, DailyLiters as variable from bmdata100M
@@ -1139,8 +1140,8 @@ gc()
 
 ## 100M 4N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-rts <- c(rep(1.1, 30))
-for(i in 1:30) {
+rts <- c(rep(1.1, 10))
+for(i in 1:10) {
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
       SELECT DATE, Customer, Brand, Category, BeverageFlavor, DailyLiters as variable from bmdata100M
@@ -1166,6 +1167,3 @@ gc()
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
 BenchmarkResults[46, TimeInSeconds := BenchmarkResults[1:45, sum(TimeInSeconds)]]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Melt.csv"))
-
-
-

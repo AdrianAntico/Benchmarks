@@ -49,7 +49,7 @@ data.table::setorderv(dt, cols = "variable", -1)
 temp <- data.table::copy(dt)
 temp <- temp[Experiment != "Total Runtime"]
 temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
-data.table::setorderv(temp, "variable", 1)
+data.table::setorderv(temp, "Total Run Time (secs)", 1)
 AutoPlots::Plot.Bar(
   dt = temp,
   PreAgg = TRUE,

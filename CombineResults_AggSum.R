@@ -48,8 +48,7 @@ data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case
 temp <- data.table::copy(dt)
-temp <- temp[!c(46:60, 107:121, 168:183, 229:243, 290:304)]
-temp <- temp[Experiment != "Total Runtime"]
+temp <- temp[!c(46:61, 107:122, 168:183, 229:244, 290:305)]
 temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
 temp <- temp[order(`Total Run Time (secs)`)]
 AutoPlots::Plot.Bar(

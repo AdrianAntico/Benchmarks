@@ -1,18 +1,20 @@
 ## Background
-This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R's data.table, Python's Polars, DuckDB, Pandas, and Collapse. Others to come. 
+This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R data.table, Python Polars, R DuckDB, Python Pandas, and R Collapse.
 
-All of the packages utilize the installation that comes recommended. For example, DuckDB recommends to install in R as `install.packages("duckdb")` so I utilize that. There are no special installation setup operations taking place for any of the packages. I want to see off the shelf, simple installation, benchmarks. I believe that is what most people use when running these frameworks. Also, I'm using a Windows OS which I believe to be the most popular OS that people use. If anyone wants to run these on MAC or Linux, please share your results and I will display them. Lastly, I'm running this locally, not on cloud, as I also believe that to be the more common usage. Regardless of commonality, I think it's important to see results under these conditions vs. cloud and linux environments only.
+All of the packages utilize the installation that comes recommended. For example, DuckDB recommends to install in R as `install.packages("duckdb")` so I utilize that. There are no special installation setup operations taking place for any of the packages. I want to see off the shelf, simple installation, benchmarks. I believe that is what most people use when running these frameworks. Also, I'm using Windows 10 OS. If anyone wants to run these on MAC or Linux, please share your results and I will display them. Lastly, I'm running this locally, not on cloud. I think it's important to see results under these conditions vs. cloud and linux environments only.
 
-The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a Date variable, 4 group variables, and 4 numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
+The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a date variable, four group variables, and four numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
+
+Last, but not least, I run the R scripts in RStudio and the Python scripts in vscode.
 
 <br>
 
 ## Current Frameworks Tested
-* R data.table
-* R Collapse
-* R DuckDB
-* Python Polars
-* Python Pandas
+* R data.table: v4.14.8
+* R Collapse: v.2.0.15
+* R DuckDB: v1.0.0
+* Python Polars: v0.20.30
+* Python Pandas: v2.2.2
 
 <br>
 
@@ -134,7 +136,7 @@ Common attributes across datasets:
 
 ## Machine Specs
 * Windows OS
-* Memory: 234GB
+* Memory: 256GB
 * CPU: 32 cores / 64 threads
 * AMD Ryzen CPU
 
@@ -293,5 +295,3 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 </details>
 
 <br>
-
-

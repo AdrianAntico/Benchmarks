@@ -269,7 +269,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 
 ### Union
-#### Total Run Time
+#### Total Run Time (note: DuckDB didn't finish so its total run time is biased down)
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
 
 <details><summary> Click here to see detailed results </summary>

@@ -81,7 +81,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[1, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[1, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -97,7 +97,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[2, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[2, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -113,7 +113,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[3, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[3, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -129,7 +129,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[4, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[4, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -145,7 +145,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[5, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[5, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -162,7 +162,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[6, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[6, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -179,7 +179,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[7, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[7, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -196,7 +196,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[8, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[8, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -213,7 +213,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[9, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[9, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -230,7 +230,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[10, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[10, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -247,7 +247,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[11, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[11, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -264,7 +264,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[12, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[12, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -281,7 +281,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[13, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[13, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -298,7 +298,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[14, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[14, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -315,7 +315,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[15, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[15, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -343,7 +343,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[16, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[16, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -359,7 +359,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[17, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[17, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -375,7 +375,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[18, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[18, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -391,7 +391,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[19, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[19, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -407,7 +407,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[20, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[20, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -424,7 +424,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[21, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[21, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -441,7 +441,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[22, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[22, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -458,7 +458,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[23, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[23, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -475,7 +475,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[24, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[24, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -492,7 +492,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[25, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[25, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -509,7 +509,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[26, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[26, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -526,7 +526,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[27, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[27, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -543,7 +543,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[28, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[28, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -560,7 +560,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[29, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[29, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -577,7 +577,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[30, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[30, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -604,7 +604,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[31, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[31, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -620,7 +620,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[32, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[32, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -636,7 +636,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[33, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[33, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -652,7 +652,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[34, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[34, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -668,7 +668,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[35, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[35, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -685,7 +685,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[36, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[36, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -702,7 +702,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[37, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[37, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -719,7 +719,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[38, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[38, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -736,7 +736,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[39, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[39, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -753,7 +753,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[40, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[40, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -770,7 +770,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[41, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[41, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -787,7 +787,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[42, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[42, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -804,7 +804,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[43, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[43, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -821,7 +821,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[44, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[44, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -838,7 +838,7 @@ for(i in 1:10) {
   end <- Sys.time()
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[45, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[45, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResults_Union.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()

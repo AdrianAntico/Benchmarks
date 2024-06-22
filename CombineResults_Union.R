@@ -12,14 +12,14 @@ pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
 #collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
+data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "1_Polars")
 data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
-data.table::setnames(pandas, "TimeInSeconds", "2_Pandas")
+data.table::setnames(pandas, "TimeInSeconds", "3_Pandas")
 #data.table::setnames(collapse, "TimeInSeconds", "4_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "2_Datatable")]
 
 # Join data
 dt <- cbind(
@@ -34,10 +34,10 @@ dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "3_Datatable",
+    "2_Datatable",
     "1_Polars",
     "4_DuckDB",
-    "2_Pandas"#,
+    "3_Pandas"#,
     # "4_Collapse"
     ),
   value.name = "Time In Seconds")

@@ -1,3 +1,5 @@
+Last Updated: 06/21/2024
+
 ## Background
 This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R data.table, Python Polars, R DuckDB, Python Pandas, and R Collapse.
 

@@ -42,7 +42,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 1M 2N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData1M.csv')
+data = pl.read_csv(f'{Path}FakeBevData1M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,44)]
@@ -133,7 +133,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 10M 2N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData10M.csv')
+data = pl.read_csv(f'{Path}FakeBevData10M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,483)]
@@ -224,7 +224,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 100M 2N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData100M.csv')
+data = pl.read_csv(f'{Path}FakeBevData100M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,4882)]

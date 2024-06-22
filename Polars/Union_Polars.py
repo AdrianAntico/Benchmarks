@@ -72,7 +72,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 1M 1N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData1M.csv')
+data = pl.read_csv(f'{Path}FakeBevData1M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Union.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 cols = ['Date', 'Daily Liters']
@@ -324,7 +324,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 10M 1N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData10M.csv')
+data = pl.read_csv(f'{Path}FakeBevData10M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Union.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 cols = ['Date', 'Daily Liters']
@@ -577,7 +577,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 100M 1N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData100M.csv')
+data = pl.read_csv(f'{Path}FakeBevData100M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Union.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 cols = ['Date', 'Daily Liters']

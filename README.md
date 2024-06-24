@@ -136,8 +136,6 @@ Common attributes across datasets:
 
 </details>
 
-<br>
-
 ### Left Join
 <details><summary> Click here to see steps </summary>
 
@@ -153,8 +151,6 @@ Common attributes across datasets:
 * Done!
 
 </details>
-
-<br>
 
 ### Inner Join
 <details><summary> Click here to see steps </summary>

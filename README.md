@@ -351,6 +351,8 @@ Without DuckDB
 
 <br>
 
+</details>
+
 
 ### Inner Join
 #### Total Run Time (excluding 1bn rows run times)
@@ -371,4 +373,4 @@ Without DuckDB
 
 <br>
 
-
+</details>

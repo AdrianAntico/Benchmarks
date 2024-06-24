@@ -171,7 +171,7 @@ Common attributes across datasets:
 <br>
 
 ## Machine Specs
-* Windows OS
+* Windows 10 OS
 * Memory: 256GB
 * CPU: 32 cores / 64 threads
 * AMD Ryzen CPU

@@ -1,54 +1,54 @@
 Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Load Benchmark Files
-datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
-polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Union.csv"))
+datatable <- data.table::fread(paste0(Path, "BenchmarkResults_InnerJoin.csv"))
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_InnerJoin.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
-duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Union.csv"))
+duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_InnerJoin.csv"))
 duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
-pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Union.csv"))
+pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_InnerJoin.csv"))
 pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
-#collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Union.csv"))
-#collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
+collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_InnerJoin.csv"))
+collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "3_Datatable")
+data.table::setnames(datatable, "TimeInSeconds", "4_Datatable")
 data.table::setnames(polars, "TimeInSeconds", "1_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
-data.table::setnames(pandas, "TimeInSeconds", "2_Pandas")
-#data.table::setnames(collapse, "TimeInSeconds", "4_Collapse")
+data.table::setnames(duckdb, "TimeInSeconds", "3_DuckDB")
+data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
+data.table::setnames(collapse, "TimeInSeconds", "2_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "3_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "4_Datatable")]
 
 # Join data
 dt <- cbind(
   datatable,
   polars,
   duckdb,
-  pandas)#,
-  #collapse)
+  pandas,
+  collapse)
 
 # Prepare data for plotting
 dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "3_Datatable",
+    "4_Datatable",
     "1_Polars",
-    "4_DuckDB",
-    "2_Pandas"#,
-    # "4_Collapse"
-    ),
+    "3_DuckDB",
+    "5_Pandas",
+    "2_Collapse"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
-data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot.csv"))
+data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))
 dt[, `Time In Seconds` := data.table::fifelse(`Time In Seconds` == -0.1, NA_real_, `Time In Seconds`)]
 data.table::setorderv(dt, cols = "variable", -1)
 
 
+# Plot 1M Case
 temp <- data.table::copy(dt)
-temp <- temp[Experiment != "Total Runtime"]
+temp <- temp[!c(10,20,30,40,50)]
 temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
 temp <- temp[order(`Total Run Time (secs)`)]
 AutoPlots::Plot.Bar(
@@ -91,7 +91,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61, 93:107, 139:153)],#  185:199)
+  dt = dt[c(1:3, 11:13, 21:23, 31:33, 41:43)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -113,14 +113,14 @@ AutoPlots::Plot.Bar(
   MouseScroll = TRUE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 35,
+  title.fontSize = 40,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 30,
+  yaxis.fontSize = 35,
   xaxis.rotate = 35,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
@@ -129,7 +129,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76, 108:122, 154:168)],# 200:214)],
+  dt = dt[c(4:6, 14:16, 24:26, 34:36, 44:46)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -151,7 +151,7 @@ AutoPlots::Plot.Bar(
   MouseScroll = TRUE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 35,
+  title.fontSize = 40,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,
@@ -167,7 +167,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91, 123:137, 169:183)],# 215:229)],
+  dt = dt[c(7:9, 17:19, 27:29, 37:39, 47:49)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -189,7 +189,7 @@ AutoPlots::Plot.Bar(
   MouseScroll = TRUE,
   TimeLine = TRUE,
   TextColor = "white",
-  title.fontSize = 35,
+  title.fontSize = 40,
   title.fontWeight = "bold",
   title.textShadowColor = "#63aeff",
   title.textShadowBlur = 5,

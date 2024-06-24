@@ -78,8 +78,8 @@ data = data.to_pandas(use_pyarrow_extension_array = True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -94,8 +94,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -110,8 +110,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -126,8 +126,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -142,8 +142,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -158,8 +158,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -174,8 +174,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -190,8 +190,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -206,8 +206,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -222,8 +222,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -238,8 +238,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -254,8 +254,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -270,8 +270,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -286,8 +286,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -302,8 +302,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -330,8 +330,8 @@ data = data.to_pandas(use_pyarrow_extension_array = True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -346,8 +346,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -362,8 +362,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -378,8 +378,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -394,8 +394,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -410,8 +410,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -426,8 +426,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -442,8 +442,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -458,8 +458,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -474,8 +474,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -490,8 +490,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -506,8 +506,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -522,8 +522,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -538,8 +538,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -554,8 +554,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -583,8 +583,8 @@ data = data.to_pandas(use_pyarrow_extension_array = True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -599,8 +599,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -615,8 +615,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -631,8 +631,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -647,8 +647,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -663,8 +663,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -679,8 +679,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -695,8 +695,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -711,8 +711,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -727,8 +727,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -743,8 +743,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -759,8 +759,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -775,8 +775,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -791,8 +791,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])
@@ -807,8 +807,8 @@ gc.collect()
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Union.csv')
 cols = ['Date', 'Customer', 'Brand', 'Category', 'Beverage Flavor', 'Daily Liters', 'Daily Units', 'Daily Margin']
 temp = data[cols]
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   pd.concat([temp, temp])

@@ -3,7 +3,7 @@ Last Updated: 06/21/2024
 ## Background
 This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R data.table, Python Polars, R DuckDB, Python Pandas, and R Collapse.
 
-All of the packages utilize the installation that comes recommended. For example, DuckDB recommends to install in R as `install.packages("duckdb")` so I utilize that. There are no special installation setup operations taking place for any of the packages. I want to see off the shelf, simple installation, benchmarks. I believe that is what most people use when running these frameworks. Also, I'm using Windows 10 OS. If anyone wants to run these on MAC or Linux, please share your results and I will display them. Lastly, I'm running this locally, not on cloud. I think it's important to see results under these conditions vs. cloud and linux environments only.
+All of the packages are installed as recommended. I'm using Windows 10 OS. If anyone wants to run these on MAC or Linux, please share your results and I will display them. Lastly, I'm running this locally, not on cloud.
 
 The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a date variable, four group variables, and four numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
 
@@ -12,20 +12,22 @@ Last, but not least, I run the R scripts in RStudio and the Python scripts in vs
 <br>
 
 ## Current Frameworks Tested
-* R data.table: v4.14.8
+* R data.table: v1.15.99
 * R Collapse: v.2.0.15
 * R DuckDB: v1.0.0
-* Python Polars: v0.20.30
+* Python Polars: v0.20.31
 * Python Pandas: v2.2.2
 
 <br>
 
 ## Current Operations
-* Group-By with Sum Aggregation
+* Aggregation
 * Melt
 * Cast
 * Lags
 * Union
+* Left Join
+* Inner Join
 
 <br>
 
@@ -136,6 +138,42 @@ Common attributes across datasets:
 
 <br>
 
+### Left Join
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run LeftJoin_datatable.R
+* Run LeftJoin_collapse.R
+* Run LeftJoin_DuckDB.R
+* Run LeftJoin_Polars.py
+* Run LeftJoin_Pandas.py
+* Run CombineResults_LeftJoin
+* Done!
+
+</details>
+
+<br>
+
+### Inner Join
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run InnerJoin_datatable.R
+* Run InnerJoin_collapse.R
+* Run InnerJoin_DuckDB.R
+* Run InnerJoin_Polars.py
+* Run InnerJoin_Pandas.py
+* Run CombineResults_InnerJoin
+* Done!
+
+</details>
+
+<br>
+
 ## Machine Specs
 * Windows OS
 * Memory: 256GB
@@ -167,15 +205,9 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults.PNG)
 
-#### Top 3 Performers
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResultsTop3.PNG)
-
 <br>
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults.PNG)
-
-#### Top 3 Performers
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResultsTop3.PNG)
 
 <br>
 
@@ -201,7 +233,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-##### With DuckDB: Note - DuckDB timed out after a few successful runs
+##### With DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithDuckDB.PNG)
 
@@ -249,11 +281,17 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
+With DuckDB
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Lags.PNG)
 
 <br>
 
-##### With DuckDB: Note - DuckDB timed out after a few successful runs
+Without DuckDB
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_WithoutDuckDB_Lags.PNG)
+
+<br>
+
+##### With DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Lags_WithDuckDB.PNG)
 
@@ -284,7 +322,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-##### With DuckDB: Note - DuckDB timed out after a few successful runs
+##### With DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithDuckDB.PNG)
 
@@ -297,3 +335,44 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 </details>
 
 <br>
+
+### Left Join
+#### Total Run Time (excluding 1bn rows run times)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG)
+<details><summary> Click here to see detailed results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_LeftJoin.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_LeftJoin.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_LeftJoin.PNG)
+
+<br>
+
+
+### Inner Join
+#### Total Run Time (excluding 1bn rows run times)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG)
+<details><summary> Click here to see detailed results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_InnerJoin.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_InnerJoin.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_InnerJoin.PNG)
+
+<br>
+
+

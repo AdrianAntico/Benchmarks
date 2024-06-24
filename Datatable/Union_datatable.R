@@ -74,8 +74,8 @@ library(data.table)
 data <- fread(paste0(Path, "FakeBevData1M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   start <- Sys.time()
   rbindlist(list(temp, temp))
   end <- Sys.time()
@@ -89,8 +89,8 @@ gc()
 ## 1M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -105,8 +105,8 @@ gc()
 ## 1M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -121,8 +121,8 @@ gc()
 ## 1M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -137,8 +137,8 @@ gc()
 ## 1M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -154,8 +154,8 @@ gc()
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -171,8 +171,8 @@ gc()
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -188,8 +188,8 @@ gc()
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -205,8 +205,8 @@ gc()
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -222,8 +222,8 @@ gc()
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -239,8 +239,8 @@ gc()
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -256,8 +256,8 @@ gc()
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -273,8 +273,8 @@ gc()
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -290,8 +290,8 @@ gc()
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -307,8 +307,8 @@ gc()
 ## 1M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -336,8 +336,8 @@ gc()
 data <- fread(paste0(Path, "FakeBevData10M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   start <- Sys.time()
   rbindlist(list(temp, temp))
   end <- Sys.time()
@@ -351,8 +351,8 @@ gc()
 ## 10M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -367,8 +367,8 @@ gc()
 ## 10M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -383,8 +383,8 @@ gc()
 ## 10M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -399,8 +399,8 @@ gc()
 ## 10M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -416,8 +416,8 @@ gc()
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -433,8 +433,8 @@ gc()
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -450,8 +450,8 @@ gc()
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -467,8 +467,8 @@ gc()
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -484,8 +484,8 @@ gc()
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -501,8 +501,8 @@ gc()
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -518,8 +518,8 @@ gc()
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -535,8 +535,8 @@ gc()
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -552,8 +552,8 @@ gc()
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -569,8 +569,8 @@ gc()
 ## 10M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -597,8 +597,8 @@ gc()
 data <- fread(paste0(Path, "FakeBevData100M.csv"))
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   start <- Sys.time()
   rbindlist(list(temp, temp))
   end <- Sys.time()
@@ -612,8 +612,8 @@ gc()
 ## 100M 1N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -628,8 +628,8 @@ gc()
 ## 100M 1N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -644,8 +644,8 @@ gc()
 ## 100M 1N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -660,8 +660,8 @@ gc()
 ## 100M 1N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -677,8 +677,8 @@ gc()
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -694,8 +694,8 @@ gc()
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -711,8 +711,8 @@ gc()
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -728,8 +728,8 @@ gc()
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -745,8 +745,8 @@ gc()
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -762,8 +762,8 @@ gc()
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -779,8 +779,8 @@ gc()
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -796,8 +796,8 @@ gc()
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -813,8 +813,8 @@ gc()
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))
@@ -830,8 +830,8 @@ gc()
 ## 100M 3N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Union.csv"))
 temp <- data[, .SD, .SDcols = c("Date","Customer","Brand","Category","Beverage Flavor","Daily Liters","Daily Units","Daily Margin")]
-rts <- c(rep(1.1, 10))
-for(i in 1:10) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   rbindlist(list(temp, temp))

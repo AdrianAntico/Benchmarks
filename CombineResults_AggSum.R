@@ -13,8 +13,8 @@ collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
 data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
-data.table::setnames(polars, "TimeInSeconds", "4_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "3_DuckDB")
+data.table::setnames(polars, "TimeInSeconds", "3_Polars")
+data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
 data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
 data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
 
@@ -35,8 +35,8 @@ dt <- data.table::melt.data.table(
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
     "2_Datatable",
-    "4_Polars",
-    "3_DuckDB",
+    "3_Polars",
+    "4_DuckDB",
     "5_Pandas",
     "1_Collapse"),
   value.name = "Time In Seconds")

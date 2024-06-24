@@ -62,8 +62,8 @@ rm(schema_info, ncores, query, table_name)
 
 ## 1M 2N 1D 0G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -83,15 +83,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[1, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[1, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 1M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -113,15 +113,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[2, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[2, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 1M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -145,15 +145,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[3, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[3, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 1M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -179,15 +179,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[4, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[4, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -215,7 +215,7 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[5, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[5, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -247,8 +247,8 @@ dbWriteTable(con, "bmdata10M", temp, overwrite = TRUE)
 rm(data, temp)
 
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -268,15 +268,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[6, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[6, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 10M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -298,15 +298,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[7, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[7, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 10M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -330,15 +330,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[8, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[8, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 10M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -364,15 +364,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[9, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[9, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -400,7 +400,7 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[10, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[10, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -430,8 +430,8 @@ table_name <- "bmdata100M"
 dbWriteTable(con, "bmdata100M", temp, overwrite = TRUE)
 rm(data, temp)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -451,15 +451,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[11, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[11, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 100M 2N 1D 1G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -481,15 +481,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[12, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[12, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 100M 2N 1D 2G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -513,15 +513,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[13, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[13, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 100M 2N 1D 3G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -547,15 +547,15 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[14, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[14, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 5))
-for(i in 1:5) {
+rts <- c(rep(1.1, 3))
+for(i in 1:3) {
   print(i)
   start <- Sys.time()
   dbExecute(con, "CREATE TABLE ans AS
@@ -583,7 +583,7 @@ for(i in 1:5) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[15, TimeInSeconds := as.numeric(difftime(end, start, units = "secs"))]
+BenchmarkResults[15, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()

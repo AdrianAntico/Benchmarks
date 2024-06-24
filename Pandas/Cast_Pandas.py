@@ -52,8 +52,8 @@ temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavo
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 temp = temp.to_pandas(use_pyarrow_extension_array=True)
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -67,8 +67,8 @@ gc.collect()
 
 ## 1M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -82,8 +82,8 @@ gc.collect()
 
 ## 1M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -97,8 +97,8 @@ gc.collect()
 
 ## 1M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -112,8 +112,8 @@ gc.collect()
 
 ## 1M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -144,8 +144,8 @@ temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavo
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 temp = temp.to_pandas(use_pyarrow_extension_array=True)
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -159,8 +159,8 @@ gc.collect()
 
 ## 10M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -174,8 +174,8 @@ gc.collect()
 
 ## 10M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -189,8 +189,8 @@ gc.collect()
 
 ## 10M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -204,8 +204,8 @@ gc.collect()
 
 ## 10M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -236,8 +236,8 @@ temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavo
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 temp = temp.to_pandas(use_pyarrow_extension_array=True)
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -251,8 +251,8 @@ gc.collect()
 
 ## 100M 2N 1D 1G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -266,8 +266,8 @@ gc.collect()
 
 ## 100M 2N 1D 2G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -281,8 +281,8 @@ gc.collect()
 
 ## 100M 2N 1D 3G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})
@@ -296,8 +296,8 @@ gc.collect()
 
 ## 100M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPandas_Cast.csv')
-rts = [1.1]*10
-for i in range(0,10):
+rts = [1.1]*3
+for i in range(0,3):
   print(i)
   start = timeit.default_timer()
   x = temp.groupby(['Date','variable','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'value':'sum'})

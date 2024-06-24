@@ -55,6 +55,14 @@ Common attributes across datasets:
 
 <br>
 
+## Machine Specs
+* Windows 10 OS
+* Memory: 256GB
+* CPU: 32 cores / 64 threads
+* AMD Ryzen CPU
+
+<br>
+
 ## Replicate Benchmarks
 
 ### Aggregation Sum
@@ -167,14 +175,6 @@ Common attributes across datasets:
 * Done!
 
 </details>
-
-<br>
-
-## Machine Specs
-* Windows 10 OS
-* Memory: 256GB
-* CPU: 32 cores / 64 threads
-* AMD Ryzen CPU
 
 <br>
 

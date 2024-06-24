@@ -349,10 +349,9 @@ Without DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_LeftJoin.PNG)
 
-<br>
-
 </details>
 
+<br>
 
 ### Inner Join
 #### Total Run Time
@@ -371,6 +370,6 @@ Without DuckDB
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_InnerJoin.PNG)
 
-<br>
-
 </details>
+
+<br>

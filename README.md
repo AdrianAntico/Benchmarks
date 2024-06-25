@@ -24,7 +24,7 @@ Last, but not least, I run the R scripts in RStudio and the Python scripts in vs
 * Aggregation
 * Melt
 * Cast
-* Lags
+* Windowing (lags)
 * Union
 * Left Join
 * Inner Join
@@ -113,7 +113,7 @@ Common attributes across datasets:
 
 </details>
 
-### Lags
+### Windowing (lags)
 <details><summary> Click here to see steps </summary>
 
 * Fork the repo and clone it to your local machine
@@ -265,7 +265,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 <br>
 
-### Lags
+### Windowing (lags)
 #### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
 

@@ -15,7 +15,7 @@ Last, but not least, I run the R scripts in RStudio and the Python scripts in vs
 * R data.table: v1.15.99
 * R Collapse: v.2.0.15
 * R DuckDB: v1.0.0
-* Python Polars: v0.20.31
+* Python Polars: v1.0.0
 * Python Pandas: v2.2.2
 
 <br>
@@ -303,7 +303,7 @@ Without DuckDB
 
 
 ### Union
-#### Total Run Time (note: DuckDB didn't finish so its total run time is biased down)
+#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
 
 <details><summary> Click here to see detailed results </summary>
@@ -318,15 +318,8 @@ Without DuckDB
 
 <br>
 
-##### With DuckDB
-
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithDuckDB.PNG)
 
-<br>
-
-##### Without DuckDB
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithoutDuckDB.PNG)
 
 </details>
 

@@ -37,7 +37,7 @@ BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 del BenchmarkResults
 gc.collect()
 
-# Aggregation 1M
+# Aggregatiindex 1M
 
 # Melt Numeric Variable:
 
@@ -46,14 +46,14 @@ data = pl.read_csv(f'{Path}FakeBevData1M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,44)]
-temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
+temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = "Date", columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -68,7 +68,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -83,7 +83,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -98,7 +98,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -113,7 +113,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -128,7 +128,7 @@ gc.collect()
 ###################################################################################################
 ###################################################################################################
 
-# Aggregation 10M
+# Aggregatiindex 10M
 
 # Melt Numeric Variable:
 
@@ -137,14 +137,14 @@ data = pl.read_csv(f'{Path}FakeBevData10M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,483)]
-temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
+temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = "Date", columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -159,7 +159,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -174,7 +174,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -189,7 +189,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -204,7 +204,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -219,7 +219,7 @@ gc.collect()
 ###################################################################################################
 ###################################################################################################
 
-# Aggregation 100M
+# Aggregatiindex 100M
 
 # Melt Numeric Variable:
 
@@ -228,14 +228,14 @@ data = pl.read_csv(f'{Path}FakeBevData100M.csv', rechunk=True)
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
 vals = [f"Location {i}" for i in range(1,4882)]
-temp = data.melt(id_vars = ['Date','Customer','Brand','Category','Beverage Flavor'], value_vars = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
+temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
 rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = "Date", columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -250,7 +250,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -265,7 +265,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -280,7 +280,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
@@ -295,7 +295,7 @@ rts = [1.1]*3
 for i in range(0,3):
   print(i)
   start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], columns = "variable", values = "value", aggregate_function = "sum").sort("Date")
+  x = temp.pivot(index = ["Date","Customer","Brand","Category","Beverage Flavor"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start

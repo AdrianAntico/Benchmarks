@@ -23,22 +23,22 @@ datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "4_Datatable")
 
 # Join data
 dt <- cbind(
+  collapse,
   datatable,
-  polars,
   duckdb,
-  pandas,
-  collapse)
+  polars,
+  pandas)
 
 # Prepare data for plotting
 dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
+    "2_Collapse",
     "4_Datatable",
-    "1_Polars",
     "3_DuckDB",
     "5_Pandas",
-    "2_Collapse"),
+    "1_Polars"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))
@@ -49,24 +49,26 @@ data.table::setorderv(dt, cols = "variable", -1)
 # Plot 1M Case
 temp <- data.table::copy(dt)
 temp <- temp[!c(10,20,30,40,50)]
-temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = variable]
-temp <- temp[order(`Total Run Time (secs)`)]
+temp[, DataSize := sub(" .*", "", Experiment)]
+temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = .(variable, DataSize)]
+temp <- temp[order(DataSize, variable, `Total Run Time (secs)`)]
+temp[, variable := gsub("^[^_]*_", "", variable)][]
 AutoPlots::Plot.Bar(
   dt = temp,
   PreAgg = TRUE,
   XVar = "variable",
   YVar = "Total Run Time (secs)",
-  GroupVar = "variable",
+  GroupVar = "DataSize",
   LabelValues = NULL,
   YVarTrans = "Identity",
   XVarTrans = "Identity",
-  FacetRows = 1,
+  FacetRows = 3,
   FacetCols = 1,
   FacetLevels = NULL,
   AggMethod = "mean",
   Height = NULL,
   Width = NULL,
-  Title = "",
+  Title = "Inner Join",
   ShowLabels = TRUE,
   Title.YAxis = NULL,
   Title.XAxis = "",
@@ -82,7 +84,7 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
   yaxis.fontSize = 30,
-  xaxis.rotate = 35,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE

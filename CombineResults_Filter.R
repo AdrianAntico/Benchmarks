@@ -1,44 +1,44 @@
 Path <- "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Load Benchmark Files
-datatable <- data.table::fread(paste0(Path, "BenchmarkResults.csv"))
-polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars.csv"))
+datatable <- data.table::fread(paste0(Path, "BenchmarkResults_Filter.csv"))
+polars <- data.table::fread(paste0(Path, "BenchmarkResultsPolars_Filter.csv"))
 polars <- polars[, .SD, .SDcols = c("TimeInSeconds")]
-duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
+duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Filter.csv"))
 duckdb <- duckdb[, .SD, .SDcols = c("TimeInSeconds")]
-pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas.csv"))
+pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas_Filter.csv"))
 pandas <- pandas[, .SD, .SDcols = c("TimeInSeconds")]
-collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
+collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse_Filter.csv"))
 collapse <- collapse[, .SD, .SDcols = c("TimeInSeconds")]
 
 # Modify Column Names for Joining
-data.table::setnames(datatable, "TimeInSeconds", "2_Datatable")
-data.table::setnames(polars, "TimeInSeconds", "3_Polars")
-data.table::setnames(duckdb, "TimeInSeconds", "4_DuckDB")
-data.table::setnames(pandas, "TimeInSeconds", "5_Pandas")
-data.table::setnames(collapse, "TimeInSeconds", "1_Collapse")
+data.table::setnames(datatable, "TimeInSeconds", "4_Datatable")
+data.table::setnames(polars, "TimeInSeconds", "1_Polars")
+data.table::setnames(duckdb, "TimeInSeconds", "5_DuckDB")
+data.table::setnames(pandas, "TimeInSeconds", "2_Pandas")
+data.table::setnames(collapse, "TimeInSeconds", "3_Collapse")
 
 # Subset columns
-datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "2_Datatable")]
+datatable <- datatable[, .SD, .SDcols = c("Method", "Experiment", "4_Datatable")]
 
 # Join data
 dt <- cbind(
+  collapse,
   datatable,
-  polars,
   duckdb,
-  pandas,
-  collapse)
+  polars,
+  pandas)
 
 # Prepare data for plotting
 dt <- data.table::melt.data.table(
   data = dt,
   id.vars = c("Method", "Experiment"),
   measure.vars = c(
-    "1_Collapse",
-    "2_Datatable",
-    "4_DuckDB",
-    "5_Pandas",
-    "3_Polars"),
+    "3_Collapse",
+    "4_Datatable",
+    "5_DuckDB",
+    "2_Pandas",
+    "1_Polars"),
   value.name = "Time In Seconds")
 dt[, `Time In Seconds` := round(`Time In Seconds`, 3)]
 data.table::fwrite(dt, file = paste0(Path, "BenchmarkResultsPlot_Melt.csv"))
@@ -48,12 +48,11 @@ data.table::setorderv(dt, cols = "variable", -1)
 
 # Plot 1M Case
 temp <- data.table::copy(dt)
-#temp <- temp[!c(46:61, 107:122, 168:183, 229:244, 290:305)]
 temp[, DataSize := sub(" .*", "", Experiment)]
+temp <- temp[DataSize != "Total"]
 temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRUE)), by = .(variable, DataSize)]
 temp <- temp[order(DataSize, variable, `Total Run Time (secs)`)]
 temp[, variable := gsub("^[^_]*_", "", variable)][]
-temp <- temp[DataSize != "Total"]
 temp <- temp[variable %in% c("Polars", "Pandas", "DuckDB") & DataSize == "1B", `Total Run Time (secs)`:= NA_real_]
 AutoPlots::Plot.Bar(
   dt = temp,
@@ -70,7 +69,7 @@ AutoPlots::Plot.Bar(
   AggMethod = "mean",
   Height = NULL,
   Width = NULL,
-  Title = "Aggregation (sum)",
+  Title = "Filter",
   ShowLabels = TRUE,
   Title.YAxis = NULL,
   Title.XAxis = "",
@@ -86,7 +85,7 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
   yaxis.fontSize = 30,
-  xaxis.rotate = 35,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
@@ -95,7 +94,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 1M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 62:76, 123:137, 184:198, 245:259)],
+  dt = dt[c(1:10, 42:51, 83:92, 124:133, 165:174)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -133,7 +132,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 10M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 77:91, 138:152, 199:213, 260:274)],
+  dt = dt[c(11:20, 52:61, 93:102, 134:143, 175:184)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -171,7 +170,7 @@ AutoPlots::Plot.Bar(
 
 # Plot 100M Case
 AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 92:106, 153:167, 214:228, 275:289)],
+  dt = dt[c(21:30, 62:71, 103:112, 144:153, 185:194)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -207,11 +206,12 @@ AutoPlots::Plot.Bar(
   Debug = FALSE
 )
 
+
 # Plot 1B Case
 library(data.table)
-dt = dt[variable == "5_Pandas" & Experiment %like% "1B", `Time In Seconds` := NA]
+x <- dt[gsub("^[^_]*_", "", variable) %in% c("Polars", "Pandas", "DuckDB") & substr(Experiment,1,2) == "1B", `Time In Seconds`:= NA_real_][]
 AutoPlots::Plot.Bar(
-  dt = dt[c(46:60, 107:121, 168:182, 229:243, 290:304)],
+  dt = x[c(31:40, 72:81, 113:122, 154:163, 195:204)],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",

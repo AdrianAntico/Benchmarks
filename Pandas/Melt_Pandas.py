@@ -73,7 +73,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 1M 2N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData1M.csv')
+data = pd.read_csv(f'{Path}FakeBevData1M.csv', engine = "pyarrow", keep_default_na=False)
 BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas_Melt.csv')
 rts = [1.1]*3
 for i in range(0,3):
@@ -279,7 +279,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 10M 2N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData10M.csv')
+data = pd.read_csv(f'{Path}FakeBevData10M.csv', engine = "pyarrow", keep_default_na=False)
 BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas_Melt.csv')
 rts = [1.1]*3
 for i in range(0,3):
@@ -486,7 +486,7 @@ gc.collect()
 # Melt Numeric Variable:
 
 ## 100M 2N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData100M.csv')
+data = pd.read_csv(f'{Path}FakeBevData100M.csv', engine = "pyarrow", keep_default_na=False)
 BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas_Melt.csv')
 rts = [1.1]*3
 for i in range(0,3):

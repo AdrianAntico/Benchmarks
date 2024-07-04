@@ -28,6 +28,7 @@ Last, but not least, I run the R scripts in RStudio and the Python scripts in vs
 * Union
 * Left Join
 * Inner Join
+* Filter
 
 <br>
 
@@ -176,6 +177,22 @@ Common attributes across datasets:
 
 </details>
 
+### Filter
+<details><summary> Click here to see steps </summary>
+
+* Fork the repo and clone it to your local machine
+* Modify the Path variable at the top of each script to reflect your file location
+* Run FakeBevDataBuilds.R to generate the benchmarking datasets
+* Run Filter_datatable.R
+* Run Filter_collapse.R
+* Run Filter_DuckDB.R
+* Run Filter_Polars.py
+* Run Filter_Pandas.py
+* Run CombineResults_Filter
+* Done!
+
+</details>
+
 <br>
 
 ## Benmark Results
@@ -189,7 +206,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ### Sum Aggregation
-#### Total Run Time (excluding 1bn rows run times)
+#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
 <details><summary> Click here to see detailed results </summary>
 
@@ -366,3 +383,26 @@ Without DuckDB
 </details>
 
 <br>
+
+### Filter
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG)
+<details><summary> Click here to see detailed results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults_Filter.PNG)
+
+</details>

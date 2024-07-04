@@ -37,7 +37,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 1M 1N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData1M.csv', engine = "pyarrow")
+data = pd.read_csv(f'{Path}FakeBevData1M.csv', engine = "pyarrow", keep_default_na=False)
 data['Date'] = pd.to_datetime(data['Date'])
 data['Customer'] = data['Customer'].astype('category')
 data['Brand'] = data['Brand'].astype('category')
@@ -111,7 +111,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 10M 1N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData10M.csv', engine = "pyarrow")
+data = pd.read_csv(f'{Path}FakeBevData10M.csv', engine = "pyarrow", keep_default_na=False)
 data['Date'] = pd.to_datetime(data['Date'])
 data['Customer'] = data['Customer'].astype('category')
 data['Brand'] = data['Brand'].astype('category')
@@ -185,7 +185,7 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 100M 1N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData100M.csv', engine = "pyarrow")
+data = pd.read_csv(f'{Path}FakeBevData100M.csv', engine = "pyarrow", keep_default_na=False)
 data['Date'] = pd.to_datetime(data['Date'])
 data['Customer'] = data['Customer'].astype('category')
 data['Brand'] = data['Brand'].astype('category')

@@ -54,6 +54,12 @@ temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRU
 temp <- temp[order(DataSize, variable, `Total Run Time (secs)`)]
 temp[, variable := gsub("^[^_]*_", "", variable)][]
 temp <- temp[variable %in% c("Polars", "Pandas", "DuckDB") & DataSize == "1B", `Total Run Time (secs)`:= NA_real_]
+
+
+# Add DataSize for filtering
+dt[, DataSize := sub(" .*", "", Experiment)]
+
+# Plot Totals
 AutoPlots::Plot.Bar(
   dt = temp,
   PreAgg = TRUE,
@@ -93,8 +99,8 @@ AutoPlots::Plot.Bar(
 
 
 # Plot 1M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(1:10, 42:51, 83:92, 124:133, 165:174)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "1M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -123,16 +129,16 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 # Plot 10M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(11:20, 52:61, 93:102, 134:143, 175:184)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "10M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -161,16 +167,16 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 # Plot 100M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(21:30, 62:71, 103:112, 144:153, 185:194)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "100M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -199,19 +205,19 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 
 # Plot 1B Case
 library(data.table)
 x <- dt[gsub("^[^_]*_", "", variable) %in% c("Polars", "Pandas", "DuckDB") & substr(Experiment,1,2) == "1B", `Time In Seconds`:= NA_real_][]
-AutoPlots::Plot.Bar(
-  dt = x[c(31:40, 72:81, 113:122, 154:163, 195:204)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = x[DataSize == "1B"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -240,9 +246,9 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))

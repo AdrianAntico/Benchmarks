@@ -53,6 +53,11 @@ temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRU
 temp <- temp[order(DataSize, variable, `Total Run Time (secs)`)]
 temp[, variable := gsub("^[^_]*_", "", variable)][]
 
+
+# Add DataSize for filtering
+dt[, DataSize := sub(" .*", "", Experiment)]
+
+# Plot Totals
 AutoPlots::Plot.Bar(
   dt = temp,
   PreAgg = TRUE,
@@ -90,48 +95,9 @@ AutoPlots::Plot.Bar(
   Debug = FALSE
 )
 
-
-AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61, 93:107, 139:153, 185:199)],
-  PreAgg = TRUE,
-  XVar = "Experiment",
-  YVar = "Time In Seconds",
-  GroupVar = "variable",
-  LabelValues = NULL,
-  YVarTrans = "Identity",
-  XVarTrans = "Identity",
-  FacetRows = 1,
-  FacetCols = 1,
-  FacetLevels = NULL,
-  AggMethod = "mean",
-  Height = NULL,
-  Width = NULL,
-  Title = "1M Rows Benchmark",
-  ShowLabels = TRUE,
-  Title.YAxis = NULL,
-  Title.XAxis = "",
-  EchartsTheme = "dark",
-  MouseScroll = TRUE,
-  TimeLine = TRUE,
-  TextColor = "white",
-  title.fontSize = 35,
-  title.fontWeight = "bold",
-  title.textShadowColor = "#63aeff",
-  title.textShadowBlur = 5,
-  title.textShadowOffsetY = 1,
-  title.textShadowOffsetX = -1,
-  xaxis.fontSize = 14,
-  yaxis.fontSize = 30,
-  xaxis.rotate = 35,
-  yaxis.rotate = 0,
-  ContainLabel = TRUE,
-  Debug = FALSE
-)
-
-
 # Plot 1M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(1:15, 47:61, 93:107, 139:153, 185:199)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "1M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -165,11 +131,12 @@ AutoPlots::Plot.Bar(
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
+
 
 # Plot 10M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(16:30, 62:76, 108:122, 154:168, 200:214)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "10M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -198,16 +165,16 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
+  yaxis.fontSize = 30,
   xaxis.rotate = 35,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 # Plot 100M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(31:45, 77:91, 123:137, 169:183, 215:229)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "100M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -241,4 +208,5 @@ AutoPlots::Plot.Bar(
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
+

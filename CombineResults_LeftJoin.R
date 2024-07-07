@@ -54,6 +54,11 @@ temp <- temp[, list(`Total Run Time (secs)` = sum(`Time In Seconds`, na.rm = TRU
 temp <- temp[order(DataSize, variable, `Total Run Time (secs)`)]
 temp[, variable := gsub("^[^_]*_", "", variable)][]
 
+
+# Add DataSize for filtering
+dt[, DataSize := sub(" .*", "", Experiment)]
+
+# Plot Totals
 AutoPlots::Plot.Bar(
   dt = temp,
   PreAgg = TRUE,
@@ -93,8 +98,8 @@ AutoPlots::Plot.Bar(
 
 
 # Plot 1M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(1:3, 11:13, 21:23, 31:33, 41:43)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "1M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -123,16 +128,16 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 # Plot 10M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(4:6, 14:16, 24:26, 34:36, 44:46)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "10M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -161,16 +166,16 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))
 
 # Plot 100M Case
-AutoPlots::Plot.Bar(
-  dt = dt[c(7:9, 17:19, 27:29, 37:39, 47:49)],
+echarts4r::e_flip_coords(AutoPlots::Plot.Bar(
+  dt = dt[DataSize == "100M"],
   PreAgg = TRUE,
   XVar = "Experiment",
   YVar = "Time In Seconds",
@@ -199,9 +204,9 @@ AutoPlots::Plot.Bar(
   title.textShadowOffsetY = 1,
   title.textShadowOffsetX = -1,
   xaxis.fontSize = 14,
-  yaxis.fontSize = 35,
-  xaxis.rotate = 35,
+  yaxis.fontSize = 30,
+  xaxis.rotate = 0,
   yaxis.rotate = 0,
   ContainLabel = TRUE,
   Debug = FALSE
-)
+))

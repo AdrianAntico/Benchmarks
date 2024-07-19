@@ -208,15 +208,6 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Sum Aggregation
 #### Total Run Time
 
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults.PNG">
-</picture>
-
-
-
-
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
 <details><summary> Click here to see detailed results </summary>
 

@@ -1,3 +1,5 @@
+<img src='https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo.png' align='center' width='1000' />
+
 Last Updated: 06/21/2024
 
 ## Background
@@ -7,21 +9,19 @@ All of the packages are installed as recommended. I'm using Windows 10 OS. If an
 
 The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a date variable, four group variables, and four numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
 
-Last, but not least, I run the R scripts in RStudio and the Python scripts in vscode.
-
 <br>
 
 ## Current Frameworks Tested
-* R data.table: v1.15.99
-* R Collapse: v.2.0.15
-* R DuckDB: v1.0.0
-* Python Polars: v1.0.0
-* Python Pandas: v2.2.2
+* R data.table: v1.17.8
+* R Collapse: v.2.1.2
+* R DuckDB: v1.3.2
+* Python Polars: v1.3.2
+* Python Pandas: v2.3.1
 
 <br>
 
 ## Current Operations
-* Aggregation
+* Aggregation (sum)
 * Melt
 * Cast
 * Windowing (lags)

@@ -1,6 +1,7 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/AdrianAntico/Benchmarks/blob/main/logo.png" width="1000"/>
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo.PNG" width="1000">
+</p>
+
 
 
 Last Updated: 06/21/2024

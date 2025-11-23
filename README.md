@@ -1,4 +1,7 @@
-<img src='https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo.png' align='center' width='1000' />
+<div align="center">
+  <img src="https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo.png" width="1000"/>
+</div>
+
 
 Last Updated: 06/21/2024
 

@@ -226,32 +226,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ### Melt
-#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
 
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Melt.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Melt.PNG)
-
-<br>
-
-##### With DuckDB
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithDuckDB.PNG)
-
-<br>
-
-##### Without DuckDB
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Melt_WithoutDuckDB.PNG)
-
-</details>
 
 <br>
 

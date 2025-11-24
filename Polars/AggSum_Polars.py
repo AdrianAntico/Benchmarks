@@ -7,8 +7,8 @@ Path = "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Create results table
 BenchmarkResults = {
-  'Framework': ['polars']*61, 
-  'Method': ['sum aggregation'] * 61,
+  'Framework': ['polars']*46, 
+  'Method': ['sum aggregation'] * 46,
   'Experiment': [
     '1M 1N 1D 0G',
     '1M 1N 1D 1G',
@@ -57,24 +57,9 @@ BenchmarkResults = {
     '100M 3N 1D 2G',
     '100M 3N 1D 3G',
     '100M 3N 1D 4G',
-    
-    '1B 1N 1D 0G',
-    '1B 1N 1D 1G',
-    '1B 1N 1D 2G',
-    '1B 1N 1D 3G',
-    '1B 1N 1D 4G',
-    '1B 2N 1D 0G',
-    '1B 2N 1D 1G',
-    '1B 2N 1D 2G',
-    '1B 2N 1D 3G',
-    '1B 2N 1D 4G',
-    '1B 3N 1D 0G',
-    '1B 3N 1D 1G',
-    '1B 3N 1D 2G',
-    '1B 3N 1D 3G',
-    '1B 3N 1D 4G',
+
     'Total Runtime'],
-  'TimeInSeconds': [-0.1]*61
+  'TimeInSeconds': [-0.1]*46
 }
 BenchmarkResults = pl.DataFrame(BenchmarkResults)
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
@@ -573,160 +558,160 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 1B 1N 1D 0G
-data = pl.read_csv(f'{Path}FakeBevData1B.csv', rechunk=True)
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
-start = timeit.default_timer()
-data.group_by('Date').agg(pl.sum('Daily Liters'))
-end = timeit.default_timer()
-BenchmarkResults[45, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'))
-end = timeit.default_timer()
-BenchmarkResults[46, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'))
-end = timeit.default_timer()
-BenchmarkResults[47, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'))
-end = timeit.default_timer()
-BenchmarkResults[48, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 4G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'))
-end = timeit.default_timer()
-BenchmarkResults[49, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 0G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by('Date').agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
-end = timeit.default_timer()
-BenchmarkResults[50, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
-end = timeit.default_timer()
-BenchmarkResults[51, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
-end = timeit.default_timer()
-BenchmarkResults[52, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
-end = timeit.default_timer()
-BenchmarkResults[53, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 4G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
-end = timeit.default_timer()
-BenchmarkResults[54, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 0G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by('Date').agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
-end = timeit.default_timer()
-BenchmarkResults[55, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
-end = timeit.default_timer()
-BenchmarkResults[56, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
-end = timeit.default_timer()
-BenchmarkResults[57, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
-end = timeit.default_timer()
-BenchmarkResults[58, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 4G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-start = timeit.default_timer()
-data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
-end = timeit.default_timer()
-BenchmarkResults[59, 'TimeInSeconds'] = end - start
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
-del data, BenchmarkResults, end, start
-gc.collect()
-
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
-x = BenchmarkResults[0:59]
-y = x['TimeInSeconds'].sum()
-BenchmarkResults[60, 'TimeInSeconds'] = y
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# data = pl.read_csv(f'{Path}FakeBevData1B.csv', rechunk=True)
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# data = data.with_columns(pl.col('Date').str.to_date('%Y-%m-%d'))
+# start = timeit.default_timer()
+# data.group_by('Date').agg(pl.sum('Daily Liters'))
+# end = timeit.default_timer()
+# BenchmarkResults[45, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 1G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'))
+# end = timeit.default_timer()
+# BenchmarkResults[46, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 2G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'))
+# end = timeit.default_timer()
+# BenchmarkResults[47, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 3G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'))
+# end = timeit.default_timer()
+# BenchmarkResults[48, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 4G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'))
+# end = timeit.default_timer()
+# BenchmarkResults[49, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 0G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by('Date').agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
+# end = timeit.default_timer()
+# BenchmarkResults[50, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 1G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
+# end = timeit.default_timer()
+# BenchmarkResults[51, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 2G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
+# end = timeit.default_timer()
+# BenchmarkResults[52, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 3G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
+# end = timeit.default_timer()
+# BenchmarkResults[53, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 4G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'))
+# end = timeit.default_timer()
+# BenchmarkResults[54, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 0G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by('Date').agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
+# end = timeit.default_timer()
+# BenchmarkResults[55, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 1G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
+# end = timeit.default_timer()
+# BenchmarkResults[56, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 2G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
+# end = timeit.default_timer()
+# BenchmarkResults[57, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 3G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
+# end = timeit.default_timer()
+# BenchmarkResults[58, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 4G
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# start = timeit.default_timer()
+# data.group_by(['Date','Customer','Brand','Category','Beverage Flavor']).agg(pl.sum('Daily Liters'),pl.sum('Daily Units'),pl.sum('Daily Margin'))
+# end = timeit.default_timer()
+# BenchmarkResults[59, 'TimeInSeconds'] = end - start
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
+# del data, BenchmarkResults, end, start
+# gc.collect()
+# 
+# BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars.csv')
+# x = BenchmarkResults[0:59]
+# y = x['TimeInSeconds'].sum()
+# BenchmarkResults[60, 'TimeInSeconds'] = y
+# BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars.csv')
 

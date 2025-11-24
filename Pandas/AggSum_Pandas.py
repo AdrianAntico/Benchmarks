@@ -8,8 +8,8 @@ Path = "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Create results table
 BenchmarkResults = {
-  'Framework': ['pandas']*61, 
-  'Method': ['sum aggregation'] * 61,
+  'Framework': ['pandas']*46, 
+  'Method': ['sum aggregation'] * 46,
   'Experiment': [
     '1M 1N 1D 0G',
     '1M 1N 1D 1G',
@@ -58,24 +58,9 @@ BenchmarkResults = {
     '100M 3N 1D 2G',
     '100M 3N 1D 3G',
     '100M 3N 1D 4G',
-    
-    '1B 1N 1D 0G',
-    '1B 1N 1D 1G',
-    '1B 1N 1D 2G',
-    '1B 1N 1D 3G',
-    '1B 1N 1D 4G',
-    '1B 2N 1D 0G',
-    '1B 2N 1D 1G',
-    '1B 2N 1D 2G',
-    '1B 2N 1D 3G',
-    '1B 2N 1D 4G',
-    '1B 3N 1D 0G',
-    '1B 3N 1D 1G',
-    '1B 3N 1D 2G',
-    '1B 3N 1D 3G',
-    '1B 3N 1D 4G',
+
     'Total Runtime'],
-  'TimeInSeconds': [-0.1]*61
+  'TimeInSeconds': [-0.1]*46
 }
 BenchmarkResults = pd.DataFrame(BenchmarkResults)
 BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
@@ -586,164 +571,164 @@ gc.collect()
 # Sum 1 Numeric Variable:
 
 ## 1B 1N 1D 0G
-data = pd.read_csv(f'{Path}FakeBevData1B.csv', engine = "pyarrow", keep_default_na=False)
-data['Date'] = pd.to_datetime(data['Date'])
-data['Customer'] = data['Customer'].astype('category')
-data['Brand'] = data['Brand'].astype('category')
-data['Category'] = data['Category'].astype('category')
-data['Beverage Flavor'] = data['Beverage Flavor'].astype('category')
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[45, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 1G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[46, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 2G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[47, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 3G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[48, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 1N 1D 4G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[49, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 0G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[50, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 1G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[51, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 2G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[52, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 3G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[53, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 2N 1D 4G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[54, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 0G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[55, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 1G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[56, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 2G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[57, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 3G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[58, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del BenchmarkResults, end, start
-gc.collect()
-
-## 1B 3N 1D 4G
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-start = timeit.default_timer()
-data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
-end = timeit.default_timer()
-BenchmarkResults.at[59, 'TimeInSeconds'] = end - start
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-del data, BenchmarkResults, end, start
-gc.collect()
-
-BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
-x = BenchmarkResults.iloc[0:60, :]
-y = x['TimeInSeconds'].sum()
-BenchmarkResults.at[60, 'TimeInSeconds'] = y
-BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
-
+# data = pd.read_csv(f'{Path}FakeBevData1B.csv', engine = "pyarrow", keep_default_na=False)
+# data['Date'] = pd.to_datetime(data['Date'])
+# data['Customer'] = data['Customer'].astype('category')
+# data['Brand'] = data['Brand'].astype('category')
+# data['Category'] = data['Category'].astype('category')
+# data['Beverage Flavor'] = data['Beverage Flavor'].astype('category')
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[45, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 1G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[46, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 2G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[47, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 3G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[48, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 1N 1D 4G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[49, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 0G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[50, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 1G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[51, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 2G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[52, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 3G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[53, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 2N 1D 4G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[54, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 0G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby('Date', as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[55, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 1G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[56, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 2G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[57, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 3G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[58, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del BenchmarkResults, end, start
+# gc.collect()
+# 
+# ## 1B 3N 1D 4G
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# start = timeit.default_timer()
+# data.groupby(['Date','Customer','Brand','Category','Beverage Flavor'], as_index=False, sort=False, observed=True, dropna=True).agg({'Daily Liters':'sum', 'Daily Units':'sum', 'Daily Margin':'sum'})
+# end = timeit.default_timer()
+# BenchmarkResults.at[59, 'TimeInSeconds'] = end - start
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# del data, BenchmarkResults, end, start
+# gc.collect()
+# 
+# BenchmarkResults = pd.read_csv(f'{Path}BenchmarkResultsPandas.csv')
+# x = BenchmarkResults.iloc[0:60, :]
+# y = x['TimeInSeconds'].sum()
+# BenchmarkResults.at[60, 'TimeInSeconds'] = y
+# BenchmarkResults.to_csv(f'{Path}BenchmarkResultsPandas.csv')
+# 

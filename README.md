@@ -27,9 +27,9 @@ The datasets utilized replicates a real world example of a beverage company's da
 ## Current Frameworks Tested
 * R data.table: v1.17.99
 * R Collapse: v.2.1.5
-* R DuckDB: v1.3.2
-* Python Polars: v1.3.2
-* Python Pandas: v2.3.1
+* R DuckDB: v1.4.2
+* Python Polars: v1.35.2
+* Python Pandas: v2.3.3
 
 <br>
 

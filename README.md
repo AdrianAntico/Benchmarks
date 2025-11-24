@@ -221,7 +221,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Sum Aggregation
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
-<details><summary> Click here to see detailed results </summary>
+
 
 <br>
 

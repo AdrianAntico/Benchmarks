@@ -5,14 +5,14 @@
 
 
 Last Updated: 
-Aggregation: 2025-11-23
-Cast: 2024-06-21
-Filter: 2024-06-21
-Inner Join: 2024-06-21
-Lags: 2024-06-21
-Left Join: 2024-06-21
-Melt: 2024-06-21
-Union: 2024-06-21
+- Aggregation: 2025-11-23
+- Cast: 2024-06-21
+- Filter: 2024-06-21
+- Inner Join: 2024-06-21
+- Lags: 2024-06-21
+- Left Join: 2024-06-21
+- Melt: 2024-06-21
+- Union: 2024-06-21
 
 
 ## Background

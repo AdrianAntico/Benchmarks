@@ -11,7 +11,7 @@ Last Updated:
 - Inner Join: 2024-06-21
 - Lags: 2024-06-21
 - Left Join: 2024-06-21
-- Melt: 2024-06-21
+- Melt: 2025-11-23
 - Union: 2024-06-21
 
 

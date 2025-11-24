@@ -4,7 +4,16 @@
 
 
 
-Last Updated: 06/21/2024
+Last Updated: 
+Aggregation: 2025-11-23
+Cast: 2024-06-21
+Filter: 2024-06-21
+Inner Join: 2024-06-21
+Lags: 2024-06-21
+Left Join: 2024-06-21
+Melt: 2024-06-21
+Union: 2024-06-21
+
 
 ## Background
 This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R data.table, Python Polars, R DuckDB, Python Pandas, and R Collapse.
@@ -16,8 +25,8 @@ The datasets utilized replicates a real world example of a beverage company's da
 <br>
 
 ## Current Frameworks Tested
-* R data.table: v1.17.8
-* R Collapse: v.2.1.2
+* R data.table: v1.17.99
+* R Collapse: v.2.1.5
 * R DuckDB: v1.3.2
 * Python Polars: v1.3.2
 * Python Pandas: v2.3.1

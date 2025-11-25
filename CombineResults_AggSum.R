@@ -7,6 +7,8 @@ duckdb <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB.csv"))
 pandas <- data.table::fread(paste0(Path, "BenchmarkResultsPandas.csv"))
 pandas <- pandas[, .SD, .SDcols = names(datatable)]
 collapse <- data.table::fread(paste0(Path, "BenchmarkResultsCollapse.csv"))
+
+
 master <- data.table::rbindlist(list(
   collapse,
   datatable,

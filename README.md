@@ -9,7 +9,7 @@ Last Updated:
 - Cast: 2025-11-23
 - Filter: 2024-06-21
 - Inner Join: 2024-06-21
-- Lags: 2024-06-21
+- Lags: 2025-11-23
 - Left Join: 2024-06-21
 - Melt: 2025-11-23
 - Union: 2024-06-21
@@ -238,38 +238,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ### Windowing (lags)
-#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
 
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Lags.PNG)
-
-<br>
-
-With DuckDB
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Lags.PNG)
-
-<br>
-
-Without DuckDB
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_WithoutDuckDB_Lags.PNG)
-
-<br>
-
-##### With DuckDB
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Lags_WithDuckDB.PNG)
-
-<br>
-
-##### Without DuckDB
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Lags_WithoutDuckDB.PNG)
-
-</details>
 
 <br>
 

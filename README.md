@@ -92,12 +92,16 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
 
+<br>
+
 ---
 
 <br>
 
 ### Melt
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
+
+<br>
 
 ---
 
@@ -106,6 +110,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Cast
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
 
+<br>
+
 ---
 
 <br>
@@ -113,13 +119,16 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Windowing (lags)
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
 
+<br>
+
 ---
 
 <br>
 
-
 ### Union
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
+
+<br>
 
 ---
 
@@ -128,12 +137,16 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ### Left Join
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG)
 
+<br>
+
 ---
 
 <br>
 
 ### Inner Join
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG)
+
+<br>
 
 ---
 
@@ -161,6 +174,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults_Filter.PNG)
 
 </details>
+
+<br>
 
 ---
 

@@ -6,27 +6,12 @@ BenchmarkResults <- data.table::data.table(
   Framework = 'duckdb',
   Method = 'cast',
   Experiment = c(
-    "1M 2N 1D 0G",
-    "1M 2N 1D 1G",
-    "1M 2N 1D 2G",
-    "1M 2N 1D 3G",
-    "1M 2N 1D 4G",
+    "1M 4N 1D 4G",
+    "10M 4N 1D 4G",
+    "100M 4N 1D 4G"
+  ),
 
-    "10M 2N 1D 0G",
-    "10M 2N 1D 1G",
-    "10M 2N 1D 2G",
-    "10M 2N 1D 3G",
-    "10M 2N 1D 4G",
-
-    "100M 2N 1D 0G",
-    "100M 2N 1D 1G",
-    "100M 2N 1D 2G",
-    "100M 2N 1D 3G",
-    "100M 2N 1D 4G",
-
-    "Total Runtime"),
-
-  TimeInSeconds = c(rep(-0.1, 16))
+  TimeInSeconds = c(rep(-0.1, 3))
 )
 
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
@@ -60,129 +45,7 @@ rm(schema_info, ncores, query, table_name)
 
 # Melt Numeric Variable:
 
-## 1M 2N 1D 0G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata1M,
-      GROUP BY
-        Date")
-  print(c(
-    nr <- dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc <- ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[1, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
 
-## 1M 2N 1D 1G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata1M,
-      GROUP BY
-        Date,
-        Customer")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[2, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 1M 2N 1D 2G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata1M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[3, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 1M 2N 1D 3G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        Category,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata1M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand,
-        Category")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[4, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
 
 ## 1M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
@@ -215,7 +78,7 @@ for(i in 1:3) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[5, TimeInSeconds := median(rts)]
+BenchmarkResults[1, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -246,128 +109,6 @@ table_name <- "bmdata10M"
 dbWriteTable(con, "bmdata10M", temp, overwrite = TRUE)
 rm(data, temp)
 
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata10M,
-      GROUP BY
-        Date")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[6, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 10M 2N 1D 1G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata10M,
-      GROUP BY
-        Date,
-        Customer")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[7, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 10M 2N 1D 2G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata10M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[8, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 10M 2N 1D 3G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        Category,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata10M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand,
-        Category")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[9, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
 
 ## 10M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
@@ -400,7 +141,7 @@ for(i in 1:3) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[10, TimeInSeconds := median(rts)]
+BenchmarkResults[2, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
@@ -429,128 +170,6 @@ invisible(dbExecute(con, sprintf("SET THREADS=%d", ncores)))
 table_name <- "bmdata100M"
 dbWriteTable(con, "bmdata100M", temp, overwrite = TRUE)
 rm(data, temp)
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata100M,
-      GROUP BY
-        Date")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[11, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 100M 2N 1D 1G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata100M,
-      GROUP BY
-        Date,
-        Customer")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[12, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 100M 2N 1D 2G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata100M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[13, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
-
-## 100M 2N 1D 3G
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rts <- c(rep(1.1, 3))
-for(i in 1:3) {
-  print(i)
-  start <- Sys.time()
-  dbExecute(con, "CREATE TABLE ans AS
-      SELECT
-        DATE,
-        Customer,
-        Brand,
-        Category,
-        SUM(CASE WHEN variable = 'DailyLiters' THEN value END) as DailyLiters,
-        SUM(CASE WHEN variable = 'DailyUnits' THEN value END) as DailyUnits,
-        SUM(CASE WHEN variable = 'DailyMargin' THEN value END) as DailyMargin,
-        SUM(CASE WHEN variable = 'DailyRevenue' THEN value END) as DailyRevenue
-      FROM bmdata100M,
-      GROUP BY
-        Date,
-        Customer,
-        Brand,
-        Category")
-  print(c(
-    nr<-dbGetQuery(con, "SELECT count(*) AS cnt FROM ans")$cnt,
-    nc<-ncol(dbGetQuery(con, "SELECT * FROM ans LIMIT 0"))))
-  end <- Sys.time()
-  invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
-  rts[i] <- as.numeric(difftime(end, start, units = "secs"))
-}
-BenchmarkResults[14, TimeInSeconds := median(rts)]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-rm(list = c("BenchmarkResults","end","start"))
-gc()
 
 ## 100M 2N 1D 4G
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
@@ -583,15 +202,7 @@ for(i in 1:3) {
   invisible(dbExecute(con, "DROP TABLE IF EXISTS ans"))
   rts[i] <- as.numeric(difftime(end, start, units = "secs"))
 }
-BenchmarkResults[15, TimeInSeconds := median(rts)]
+BenchmarkResults[3, TimeInSeconds := median(rts)]
 data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
 rm(list = c("BenchmarkResults","end","start"))
 gc()
-
-
-BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-BenchmarkResults[16, TimeInSeconds := BenchmarkResults[1:15, sum(TimeInSeconds)]]
-data.table::fwrite(BenchmarkResults, paste0(Path, "BenchmarkResultsDuckDB_Cast.csv"))
-
-
-

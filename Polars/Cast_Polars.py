@@ -8,29 +8,14 @@ Path = "C:/Users/Bizon/Documents/GitHub/rappwd/"
 
 # Create results table
 BenchmarkResults = {
-  'Framework': ['polars']*16,
-  'Method': ['cast'] * 16,
+  'Framework': ['polars']*3,
+  'Method': ['cast'] * 3,
   'Experiment': [
-    '1M 2N 1D 0G',
-    '1M 2N 1D 1G',
-    '1M 2N 1D 2G',
-    '1M 2N 1D 3G',
-    '1M 2N 1D 4G',
-    
-    '10M 2N 1D 0G',
-    '10M 2N 1D 1G',
-    '10M 2N 1D 2G',
-    '10M 2N 1D 3G',
-    '10M 2N 1D 4G',
-    
-    '100M 2N 1D 0G',
-    '100M 2N 1D 1G',
-    '100M 2N 1D 2G',
-    '100M 2N 1D 3G',
-    '100M 2N 1D 4G',
-
-    'Total Runtime'],
-  'TimeInSeconds': [-0.1]*16
+    '1M 4N 1D 4G',
+    '10M 4N 1D 4G',
+    '100M 4N 1D 4G'
+  ],
+  'TimeInSeconds': [-0.1]*3
 }
 BenchmarkResults = pl.DataFrame(BenchmarkResults)
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
@@ -49,63 +34,7 @@ vals = [f"Location {i}" for i in range(1,44)]
 temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[0, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
 
-## 1M 2N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[1, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 1M 2N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[2, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 1M 2N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[3, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
 
 ## 1M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
@@ -117,7 +46,7 @@ for i in range(0,3):
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
-BenchmarkResults[4, 'TimeInSeconds'] = stats.median(rts)
+BenchmarkResults[0, 'TimeInSeconds'] = stats.median(rts)
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 del BenchmarkResults, end, start, x, rts
 gc.collect()
@@ -140,63 +69,6 @@ vals = [f"Location {i}" for i in range(1,483)]
 temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[5, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 10M 2N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[6, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 10M 2N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[7, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 10M 2N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[8, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
 
 ## 10M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
@@ -208,7 +80,7 @@ for i in range(0,3):
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
-BenchmarkResults[9, 'TimeInSeconds'] = stats.median(rts)
+BenchmarkResults[1, 'TimeInSeconds'] = stats.median(rts)
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 del BenchmarkResults, end, start, x, rts
 gc.collect()
@@ -231,63 +103,6 @@ vals = [f"Location {i}" for i in range(1,4882)]
 temp = data.unpivot(index = ['Date','Customer','Brand','Category','Beverage Flavor'], on = ['Daily Liters','Daily Units','Daily Margin','Daily Revenue'])
 temp = temp.group_by(['Date','Customer','Brand','Category','Beverage Flavor','variable']).agg(pl.sum('value'))
 temp = temp.filter(pl.col('Customer').is_in(vals))
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = "Date", on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[10, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 100M 2N 1D 1G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[11, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 100M 2N 1D 2G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[12, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
-
-## 100M 2N 1D 3G
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-rts = [1.1]*3
-for i in range(0,3):
-  print(i)
-  start = timeit.default_timer()
-  x = temp.pivot(index = ["Date","Customer","Brand","Category"], on = "variable", values = "value", aggregate_function = "sum").sort("Date")
-  x = x.fill_null(0)
-  end = timeit.default_timer()
-  rts[i] = end - start
-BenchmarkResults[13, 'TimeInSeconds'] = stats.median(rts)
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-del BenchmarkResults, end, start, x, rts
-gc.collect()
 
 ## 100M 2N 1D 4G
 BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
@@ -299,15 +114,7 @@ for i in range(0,3):
   x = x.fill_null(0)
   end = timeit.default_timer()
   rts[i] = end - start
-BenchmarkResults[14, 'TimeInSeconds'] = stats.median(rts)
+BenchmarkResults[2, 'TimeInSeconds'] = stats.median(rts)
 BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
 del BenchmarkResults, end, start, x, rts
 gc.collect()
-
-
-BenchmarkResults = pl.read_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-x = BenchmarkResults[0:14]
-y = x['TimeInSeconds'].sum()
-BenchmarkResults[15, 'TimeInSeconds'] = y
-BenchmarkResults.write_csv(f'{Path}BenchmarkResultsPolars_Cast.csv')
-

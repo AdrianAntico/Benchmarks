@@ -6,7 +6,7 @@
 
 Last Updated: 
 - Aggregation: 2025-11-23
-- Cast: 2024-06-21
+- Cast: 2025-11-23
 - Filter: 2024-06-21
 - Inner Join: 2024-06-21
 - Lags: 2024-06-21
@@ -232,24 +232,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ### Cast
-#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
 
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Cast.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Cast.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Cast.PNG)
-
-</details>
 
 <br>
 

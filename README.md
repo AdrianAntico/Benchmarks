@@ -245,25 +245,8 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 
 
 ### Union
-#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
 
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Union.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Union.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Union_WithDuckDB.PNG)
-
-
-</details>
 
 <br>
 

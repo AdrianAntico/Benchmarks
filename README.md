@@ -12,7 +12,7 @@ Last Updated:
 - Lags: 2025-11-23
 - Left Join: 2024-06-21
 - Melt: 2025-11-23
-- Union: 2024-06-21
+- Union: 2025-11-23
 
 
 ## Background

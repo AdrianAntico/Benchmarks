@@ -77,9 +77,88 @@ Common attributes across datasets:
 
 <br>
 
+
+## Benmark Results
+
+In the plots below the x-axis "Experiments" shows four letters with numbers in front of them. This is what they mean:
+* M: millions of rows
+* N: number of numeric variables
+* D: number of date variables
+* G: number of additional group variables
+
+<br>
+
+### Sum Aggregation
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
+
+
+<br>
+
+### Melt
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
+
+
+<br>
+
+### Cast
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
+
+
+<br>
+
+### Windowing (lags)
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
+
+
+<br>
+
+
+### Union
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
+
+
+<br>
+
+### Left Join
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG)
+
+
+<br>
+
+### Inner Join
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG)
+
+
+<br>
+
+### Filter
+#### Total Run Time
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG)
+<details><summary> Click here to see detailed results </summary>
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Filter.PNG)
+
+<br>
+
+![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults_Filter.PNG)
+
+</details>
+
+<br>
+
 ## Replicate Benchmarks
 
-### Aggregation Sum
 <details><summary> Click here to see steps </summary>
 
 * Fork the repo and clone it to your local machine
@@ -203,84 +282,5 @@ Common attributes across datasets:
 * Run Filter_Pandas.py
 * Run CombineResults_Filter
 * Done!
-
-</details>
-
-<br>
-
-## Benmark Results
-
-In the plots below the x-axis "Experiments" shows four letters with numbers in front of them. This is what they mean:
-* M: millions of rows
-* N: number of numeric variables
-* D: number of date variables
-* G: number of additional group variables
-
-<br>
-
-### Sum Aggregation
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
-
-
-<br>
-
-### Melt
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
-
-
-<br>
-
-### Cast
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
-
-
-<br>
-
-### Windowing (lags)
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
-
-
-<br>
-
-
-### Union
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
-
-
-<br>
-
-### Left Join
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG)
-
-
-<br>
-
-### Inner Join
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG)
-
-
-<br>
-
-### Filter
-#### Total Run Time
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG)
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults_Filter.PNG)
 
 </details>

@@ -153,27 +153,7 @@ In the plots below the x-axis "Experiments" shows four letters with numbers in f
 <br>
 
 ### Filter
-#### Total Run Time
 ![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG)
-<details><summary> Click here to see detailed results </summary>
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/10MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/100MResults_Filter.PNG)
-
-<br>
-
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/1BResults_Filter.PNG)
-
-</details>
 
 <br>
 

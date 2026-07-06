@@ -24,7 +24,7 @@ library(data.table)
 # Inner Join Numeric Variable:
 
 ## 1M 1N 1D 4G
-data <- fread(paste0(Path, "FakeBevData1M.csv"))
+data <- fread(paste0(Path, "FakeBevData1M.csv"), stringsAsFactors = TRUE)
 
 
 ## 1M 3N 1D 4G
@@ -57,7 +57,7 @@ gc()
 # Inner Join Numeric Variables:
 
 ## 10M 2N 1D 0G
-data <- fread(paste0(Path, "FakeBevData10M.csv"))
+data <- fread(paste0(Path, "FakeBevData10M.csv"), stringsAsFactors = TRUE)
 
 
 ## 1M 3N 1D 4G
@@ -90,7 +90,7 @@ gc()
 # Inner Join Numeric Variables:
 
 ## 100M 2N 1D 0G
-data <- fread(paste0(Path, "FakeBevData100M.csv"))
+data <- fread(paste0(Path, "FakeBevData100M.csv"), stringsAsFactors = TRUE)
 
 
 ## 1M 3N 1D 4G

@@ -1,290 +1,141 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo.PNG" width="1000">
+  <img src="https://raw.githubusercontent.com/AdrianAntico/Benchmarks/main/logo-v2.png" width="1100" alt="Dataframe Benchmarks: Collapse, data.table, Polars, DuckDB, pandas, and PySpark">
 </p>
 
+# Dataframe Benchmarks
 
+A reproducible comparison of dataframe engines on realistic beverage-sales data, from 1 million through 1 billion rows. The benchmark measures transformations after data loading so that the charts compare operation time rather than CSV parser speed.
 
-Last Updated: 
-- Aggregation: 2025-11-23
-- Cast: 2025-11-23
-- Filter: 2025-11-23
-- Inner Join: 2025-11-23
-- Lags: 2025-11-23
-- Left Join: 2025-11-23
-- Melt: 2025-11-23
-- Union: 2025-11-23
+Benchmark suite updated: **2026-06-21**<br>
+Published result charts last updated: **2025-11-23**
 
+## Competitors
 
-## Background
-This repo contains files for a data frames benchmark. Currently, the data frame pacakges tested include R data.table, Python Polars, R DuckDB, Python Pandas, and R Collapse.
+| Framework | Language | Version represented by published results |
+|---|---|---:|
+| data.table | R | 1.17.99 |
+| Collapse | R | 2.1.5 |
+| DuckDB | R / SQL | 1.4.2 |
+| Polars | Python | 1.35.2 |
+| pandas | Python | 2.3.3 |
+| PySpark | Python / JVM | 4.0+ benchmark implementation; results pending |
 
-All of the packages are installed as recommended. I'm using Windows 10 OS. If anyone wants to run these on MAC or Linux, please share your results and I will display them. Lastly, I'm running this locally, not on cloud.
+PySpark uses all available local Spark cores unless your Spark configuration says otherwise. Spark 4.0 or newer is required for the native SQL `ASOF JOIN` used by the rolling-join test.
 
-The datasets utilized replicates a real world example of a beverage company's data, for 1M, 10M, 100M, and 1B records. The datasets include a date variable, four group variables, and four numeric variables. The benchmark tests each dataset, using the Date variables, then adds additional group variables, and then repeats that with additional numeric variables, for each of the datasets.
+## Operations
 
-<br>
+| Operation | Workload |
+|---|---|
+| Sum aggregation | Three numeric columns grouped by date and four categorical keys |
+| Melt | Four numeric columns from wide to long |
+| Cast | Long data back to wide form |
+| Windowing | Five lags for three numeric columns within four groups |
+| Union | Append a dataframe to itself |
+| Left join | Equality join on date and four categorical keys |
+| Inner join | Equality join on date and four categorical keys |
+| Filter | Date, categorical, and numeric predicates |
+| Rolling join | Latest prior observation by date within four categorical keys |
 
-## Current Frameworks Tested
-* R data.table: v1.17.99
-* R Collapse: v.2.1.5
-* R DuckDB: v1.4.2
-* Python Polars: v1.35.2
-* Python Pandas: v2.3.3
+### Rolling-join contract
 
-<br>
+The left side contains every observation. The right side contains one aggregated reference value for every seventh day. For each left row, the benchmark returns the right row with matching `Customer`, `Brand`, `Category`, and `Beverage Flavor` whose date is the latest date less than or equal to the left date.
 
-## Current Operations
-* Aggregation (sum)
-* Melt
-* Cast
-* Windowing (lags)
-* Union
-* Left Join
-* Inner Join
-* Filter
+The implementation uses each engine's native as-of/rolling primitive: data.table rolling joins, DuckDB `ASOF JOIN`, pandas `merge_asof`, Polars `join_asof`, and Spark SQL `ASOF JOIN`. Collapse is omitted from this operation because it does not expose a native rolling/as-of join.
 
-<br>
+## Data
 
-## Dataset Attributes
-Common attributes across datasets:
-* Brand: 13 levels
-* Category: 6 levels
-* Beverage Flavor: 21 levels
-* Four numeric variables
-* One Date Variable
+The synthetic datasets model beverage-company sales and contain one date, four categorical keys, and four numeric measures.
 
-<br> 
+| Dataset | Customer levels | Other categorical levels |
+|---:|---:|---|
+| 1M rows | 99 | 13 brands, 6 categories, 21 flavors |
+| 10M rows | 1,071 | 13 brands, 6 categories, 21 flavors |
+| 100M rows | 10,793 | 13 brands, 6 categories, 21 flavors |
+| 1B rows | 108,017 | 13 brands, 6 categories, 21 flavors |
 
-1M Rows Data
-* Customer: 99 levels
+Generate the large files with [`Data/FakeBevDataBuilds.R`](Data/FakeBevDataBuilds.R). The repository only tracks the seed dataset.
 
-10M Rows Data
-* Customer: 1071 levels
+## Running the suite
 
-100M Rows Data
-* Customer: 10793 levels
+Like the existing benchmark scripts, all new scripts default to the external data directory `C:/Users/Bizon/Documents/GitHub/rappwd/`. They also support these environment variables:
 
-1Bn Rows Data
-* Customer: 108017 levels
+- `BENCHMARK_DATA_PATH`: directory containing `FakeBevData1M.csv`, `FakeBevData10M.csv`, and `FakeBevData100M.csv`.
+- `BENCHMARK_RESULTS_PATH`: output directory for benchmark CSVs; defaults to the same external data directory.
 
-<br>
+On Windows, install and verify the complete local Spark environment:
 
-## Machine Specs
-* Windows 10 OS
-* Memory: 256GB
-* CPU: 32 cores / 64 threads
-* AMD Ryzen CPU
+```powershell
+# Use this when Java 17 is already installed:
+.\Spark\Setup_Spark.ps1
 
-<br>
+# Or let the setup install Microsoft OpenJDK 17 with winget:
+.\Spark\Setup_Spark.ps1 -InstallJava
+```
 
+The setup creates `.venv-spark`, installs the pinned PySpark range, checks Java, and executes an end-to-end local Spark job. If PowerShell blocks local scripts, run `Set-ExecutionPolicy -Scope Process Bypass` once in that terminal.
 
-## Benmark Results
+PySpark 4 requires Java 17 or newer. An error mentioning class-file version `61.0` versus `55.0` means Java 11 is active; rerun `Setup_Spark.ps1 -InstallJava` so the script installs/selects Java 17 and updates `JAVA_HOME`.
 
-In the plots below the x-axis "Experiments" shows four letters with numbers in front of them. This is what they mean:
-* M: millions of rows
-* N: number of numeric variables
-* D: number of date variables
-* G: number of additional group variables
+Run one Spark benchmark or the complete Spark matrix:
 
-<br>
+```powershell
+$env:BENCHMARK_DATA_PATH = "D:\Benchmarks\Data"
+$env:BENCHMARK_RESULTS_PATH = "D:\Benchmarks\Results"
 
-### Sum Aggregation
+.\.venv-spark\Scripts\python.exe Spark/RollingJoin_Spark.py
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py agg_sum
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py cast
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py filter
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py inner_join
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py lags
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py left_join
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py melt
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py rolling_join
+.\.venv-spark\Scripts\python.exe Spark/benchmark.py union
+```
 
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG)
+The operation-specific Spark files are convenient entry points; they all delegate to [`Spark/benchmark.py`](Spark/benchmark.py). Pass `--repeats N` to change the default three timed runs.
 
-<br>
+Run the rolling-join competitors, then combine their result files in R:
 
----
+```powershell
+Rscript Datatable/RollingJoin_datatable.R
+Rscript DuckDB/RollingJoin_DuckDB.R
+python Pandas/RollingJoin_Pandas.py
+python Polars/RollingJoin_Polars.py
+python Spark/RollingJoin_Spark.py
+Rscript CombineResults_RollingJoin.R
+```
 
-<br>
+The legacy operation scripts still expose a `Path` variable at the top. Point it at the same generated-data directory before reproducing the published charts. Every existing `CombineResults_*.R` script now also loads the corresponding `BenchmarkResultsSpark*.csv` file.
 
-### Melt
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG)
+## Methodology
 
-<br>
+- Input loading and one-time setup are outside the measured region.
+- Operations run three times where practical; the reported value is the median.
+- Lazy engines are explicitly materialized. Spark uses its JVM no-op sink so every output column is evaluated without adding disk-write time.
+- All frameworks run locally on the same machine. This measures local execution, not a distributed Spark cluster.
+- Validate output shape before comparing timings. Fast wrong answers are still wrong—just with better branding.
 
----
+The published machine has Windows 10, 256 GB RAM, and an AMD Ryzen CPU with 32 cores / 64 threads. Results from macOS, Linux, and distributed Spark environments are welcome, but should be reported separately because they are not directly comparable.
 
-<br>
+## Published results
 
-### Cast
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG)
+Experiment labels use `M` for millions of rows, `N` for numeric columns, `D` for date columns, `G` for grouping columns, and `L` for lags.
 
-<br>
+| Operation | Chart |
+|---|---|
+| Sum aggregation | ![Sum aggregation benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/AggSum_TotalRunTime.PNG) |
+| Melt | ![Melt benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Melt_TotalRunTime.PNG) |
+| Cast | ![Cast benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Cast_TotalRunTime.PNG) |
+| Windowing (lags) | ![Lags benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG) |
+| Union | ![Union benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG) |
+| Left join | ![Left join benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG) |
+| Inner join | ![Inner join benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG) |
+| Filter | ![Filter benchmark](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG) |
 
----
+PySpark and rolling-join charts will be added after the full matrix has been run on the benchmark machine; the README does not present placeholder timings as measured results.
 
-<br>
+## Contributing results
 
-### Windowing (lags)
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Lags_TotalRunTime.PNG)
-
-<br>
-
----
-
-<br>
-
-### Union
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Union_TotalRunTime.PNG)
-
-<br>
-
----
-
-<br>
-
-### Left Join
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/LeftJoin_TotalRunTime.PNG)
-
-<br>
-
----
-
-<br>
-
-### Inner Join
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/InnerJoin_TotalRunTime.PNG)
-
-<br>
-
----
-
-<br>
-
-### Filter
-![](https://github.com/AdrianAntico/Benchmarks/raw/main/Images/Filter_TotalRunTime.PNG)
-
-<br>
-
----
-
-<br>
-
-## Replicate Benchmarks
-
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run AggSum_datatable.R
-* Run AggSum_DuckDB.R
-* Run AggSum_Polars.py
-* Run AggSum_Pandas.py
-* Run AggSum_collapse.py
-* Run CombineResults_AggSum
-* Done!
-
-</details>
-
-### Melt
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run Melt_datatable.R
-* Run Melt_DuckDB.R
-* Run Melt_Polars.py
-* Run Melt_Pandas.py
-* Run Melt_collapse.py
-* Run CombineResults_Melt
-* Done!
-
-</details>
-
-### Cast
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run Cast_datatable.R
-* Run Cast_DuckDB.R
-* Run Cast_Polars.py
-* Run Cast_Pandas.py
-* Run Cast_collapse.py
-* Run CombineResults_Cast
-* Done!
-
-</details>
-
-### Windowing (lags)
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run Lags_datatable.R
-* Run Lags_DuckDB.R
-* Run Lags_Polars.py
-* Run Lags_Pandas.py
-* Run Lags_collapse.py
-* Run CombineResults_Lags
-* Done!
-
-</details>
-
-### Union
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run Union_datatable.R
-* Run Union_DuckDB.R
-* Run Union_Polars.py
-* Run Union_Pandas.py
-* Run CombineResults_Union
-* Done!
-
-</details>
-
-### Left Join
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run LeftJoin_datatable.R
-* Run LeftJoin_collapse.R
-* Run LeftJoin_DuckDB.R
-* Run LeftJoin_Polars.py
-* Run LeftJoin_Pandas.py
-* Run CombineResults_LeftJoin
-* Done!
-
-</details>
-
-### Inner Join
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run InnerJoin_datatable.R
-* Run InnerJoin_collapse.R
-* Run InnerJoin_DuckDB.R
-* Run InnerJoin_Polars.py
-* Run InnerJoin_Pandas.py
-* Run CombineResults_InnerJoin
-* Done!
-
-</details>
-
-### Filter
-<details><summary> Click here to see steps </summary>
-
-* Fork the repo and clone it to your local machine
-* Modify the Path variable at the top of each script to reflect your file location
-* Run FakeBevDataBuilds.R to generate the benchmarking datasets
-* Run Filter_datatable.R
-* Run Filter_collapse.R
-* Run Filter_DuckDB.R
-* Run Filter_Polars.py
-* Run Filter_Pandas.py
-* Run CombineResults_Filter
-* Done!
-
-</details>
+Include the framework and version, operating system, CPU/core count, memory, Spark master/configuration when applicable, exact commit, and raw result CSVs. Please avoid comparing runs from different hardware in a single ranking chart.

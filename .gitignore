@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv-spark/
+
+# Generated benchmark datasets and result tables
+Data/FakeBevData1M.csv
+Data/FakeBevData10M.csv
+Data/FakeBevData100M.csv
+Data/FakeBevData1B.csv
+BenchmarkResults*.csv
+Data/BenchmarkResults*.csv

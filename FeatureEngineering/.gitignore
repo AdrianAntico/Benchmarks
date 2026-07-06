@@ -1,0 +1,5 @@
+outputs/
+*.rds
+*.parquet
+__pycache__/
+*.pyc

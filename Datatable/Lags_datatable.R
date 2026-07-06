@@ -24,7 +24,7 @@ library(data.table)
 # Aggregation 1M
 
 # Sum 1 Numeric Variable:
-data <- fread(paste0(Path, "FakeBevData1M.csv"))
+data <- fread(paste0(Path, "FakeBevData1M.csv"), stringsAsFactors = TRUE)
 BenchmarkResults <- data.table::fread(paste0(Path, "BenchmarkResults_Lags.csv"))
 setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 
@@ -48,7 +48,7 @@ gc()
 # Aggregation 10M
 
 # Sum 1 Numeric Variable:
-data <- fread(paste0(Path, "FakeBevData10M.csv"))
+data <- fread(paste0(Path, "FakeBevData10M.csv"), stringsAsFactors = TRUE)
 setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 
 
@@ -73,7 +73,7 @@ gc()
 # Aggregation 100M
 
 # Sum 1 Numeric Variable:
-data <- fread(paste0(Path, "FakeBevData100M.csv"))
+data <- fread(paste0(Path, "FakeBevData100M.csv"), stringsAsFactors = TRUE)
 setorderv(x = data, cols = c("Customer","Brand","Category","Beverage Flavor", "Date"), order = c(1,1,1,1,1))
 
 
